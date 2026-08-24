@@ -1,8 +1,55 @@
 # Bokal — Session Handoff / Resume Point
 
-**The single self-contained entry point for the next session.** Last updated: **2026-07-14, post
-store submission.** (Note: git history was rewritten on 2026-07-14 — any commit SHA you remember or
+**The single self-contained entry point for the next session.** Last updated: **2026-08-23 — see
+§0 first; the launch was never fired.** (Body sections below still read as of 2026-07-15 unless
+§0 supersedes them.) (Note: git history was rewritten on 2026-07-14 — any commit SHA you remember or
 find in older notes from before that date is INVALID. `git log` is authoritative.)
+
+---
+
+## 0. ⚠ STATE AS OF 2026-08-23 — READ THIS FIRST
+
+**The launch was never fired.** The kit was written 2026-07-16 and sat untracked on disk for five
+weeks. Verified 2026-08-23: GitHub shows **0 stars / 0 forks / 0 issues**, and there were no commits
+between 2026-07-15 and today. Nothing has ever been posted to HN, Reddit, Product Hunt, or anywhere
+else.
+
+**Live numbers (public, verified 2026-08-23):** **26 CWS users**, **5.0★ from 2 ratings**, v1.0.2,
+listing last updated 2026-07-16. All 26 installs are organic Chrome Web Store search — the listing
+converts on impressions, it just has almost none. 13 → 26 over the five quiet weeks.
+
+**Revenue: $0.** This is *not yet a signal.* 26 installs × a realistic 1–4% freemium conversion
+predicts 0.3–1 sales; zero is on-model. The question "will anyone pay for Pro?" does not become
+answerable until roughly **500–2,000 installs**. Do not re-cut pricing, the free/Pro line, or
+features in response to the current zero.
+
+**Resolved since the last handoff:** v1.0.2 IS uploaded and live (§5.3 said "upload 1.0.2" — done),
+and the CWS listing's privacy URL already points at `bokal.dev/privacy.html` (§5.1c — done).
+
+**Done 2026-08-23 (AGENT):**
+- Committed the launch kit (`docs/business/2026-07-16-launch-copy.md`, `-reddit-map.md`) after
+  revising it for August: removed 9 stale "Edge is in review" claims, removed 10 "$29.99 rising to
+  ~$39" urgency claims, reframed the Dec-2024 delisting as history.
+- **Source audit of every factual claim in the copy.** Manifest, CSP, crypto params (AES-GCM 256 /
+  PBKDF2 600k), and all five cited source paths verified correct. **Found and fixed one real
+  overclaim in 9 places: the kit advertised "Import/export: JSON, Netscape, …". Bokal EXPORTS
+  Netscape but does NOT import it** (`lib/io/export.ts` has `toNetscape`; `lib/io/import.ts` has no
+  Netscape parser; §5.8 lists Netscape import as deferred). The manifest description was always
+  correct ("JSON/Netscape export, JSON import") — only the launch copy was wrong. Copy now states
+  export and import sets separately everywhere.
+- Built `docs/business/posts/` — six paste-ready, per-venue files. **Pricing stripped from the
+  r/webdev post** (Rule 3: commercial promotion = ban there).
+- Wrote the missing **r/SideProject** post (the kit had none, though the map lists it GREEN).
+- Recalculated the posting calendar to live dates, Reddit-before-HN.
+
+**Open, blocking the announce — FOUNDER:**
+1. **Post.** Day 1 = r/chrome_extensions, Tue 2026-08-25. Copy is in `docs/business/posts/`.
+   Nothing else on this list matters until this happens.
+2. **Edge:** submitted 2026-07-15 "under review ~7 business days"; five weeks on, Bokal does not
+   appear in the Edge store. Check Partner Center — rejected, stalled, or unindexed. Until then no
+   post may claim Edge availability (all such claims have been stripped from the copy).
+3. **Price clock: DEFER.** Docs had $29.99 → ~$39 around 2026-09-13 on autopilot. Raising a price
+   with 26 installs and 0 conversions is tuning against noise. Revisit after real traffic.
 
 ---
 

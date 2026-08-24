@@ -64,7 +64,7 @@ To be blunt about what this tool is: reading and writing cookies including HttpO
 
 **It's GPL-3.0, Pro included.** Nothing stops you forking Bokal and deleting the license check — I'm not relying on license lock-in, and I'd rather say that than pretend Pro is a locked capability. The honest reason to pay is to fund the work and skip building a cookie-profile system yourself.
 
-**Free (all of it):** full cookie CRUD including HttpOnly, search/filter, protect/pin/block rules, whitelist cleanup, a CHIPS partitioned-cookie inspector, a DevTools panel, dark mode, virtualized lists. Import/export: JSON, Netscape, a cookie-header string, Playwright `storageState`, Playwright `addCookies` array, and Puppeteer `setCookie` array. It reads Cookie-Editor / EditThisCookie JSON, so switching costs nothing.
+**Free (all of it):** full cookie CRUD including HttpOnly, search/filter, protect/pin/block rules, whitelist cleanup, a CHIPS partitioned-cookie inspector, a DevTools panel, dark mode, virtualized lists. **Export:** JSON, Netscape, a cookie-header string, Playwright `storageState`, Playwright `addCookies` array, and Puppeteer `setCookie` array. **Import:** JSON — including Cookie-Editor / EditThisCookie exports, Playwright `storageState`, and Playwright/Puppeteer cookie arrays — plus cookie-header strings, so switching costs nothing. To be exact: **Netscape is export-only** (import doesn't parse `cookies.txt` yet).
 
 **Not a knock on the incumbent:** Cookie-Editor is free, has ~2M users, and is a perfectly good tool. The only reasons to look at Bokal are the permission posture and that it's open-source and auditable — not a feature war.
 
@@ -93,7 +93,7 @@ I'm the maker of Bokal, a cookie manager for Chrome. Posting here because most o
 **What it does (all free):**
 - Full cookie CRUD, **including HttpOnly cookies**, via the extension cookies API — not just what `document.cookie` can read
 - Search/filter across cookies
-- Import/export: JSON, Netscape, a cookie-header string, Playwright `storageState`, Playwright `addCookies`, and Puppeteer `setCookie` — handy for moving a logged-in session into an automated test
+- Export to JSON, Netscape, a cookie-header string, Playwright `storageState`, Playwright `addCookies`, and Puppeteer `setCookie`; import back from JSON (incl. Cookie-Editor/EditThisCookie and Playwright/Puppeteer arrays) or a header string — handy for moving a logged-in session into an automated test. Netscape is export-only.
 - Reads Cookie-Editor / EditThisCookie JSON, so switching costs nothing
 - Protect/pin/block rules, whitelist cleanup, a CHIPS partitioned-cookie inspector, a DevTools panel, dark mode, virtualized lists for big cookie stores
 
@@ -163,7 +163,7 @@ What that means, precisely:
 
 Why I bothered: EditThisCookie was delisted back in Dec 2024 (most plausibly a failed MV3 migration; [gHacks](https://www.ghacks.net/2024/12/31/google-chrome-legit-editthiscookie-extension-removed-instead-of-malicious-copycat/) — no official reason from Google), and a [copycat](https://cybersecuritynews.com/malicious-editthiscookie-chrome-extension/) then took the name and was caught harvesting credentials/tokens and phishing. For a tool that by definition handles your session cookies, I wanted one that's narrow-by-default and fully auditable.
 
-**Feature-wise (all free):** full cookie CRUD including HttpOnly, search/filter, import/export (JSON, Netscape, cookie-header, Playwright `storageState` / `addCookies`, Puppeteer `setCookie`), reads Cookie-Editor / EditThisCookie JSON, protect/pin/block rules, whitelist cleanup, CHIPS partitioned-cookie inspector, DevTools panel, dark mode, virtualized lists.
+**Feature-wise (all free):** full cookie CRUD including HttpOnly, search/filter, export (JSON, Netscape, cookie-header, Playwright `storageState` / `addCookies`, Puppeteer `setCookie`) and import (JSON — incl. Cookie-Editor / EditThisCookie and Playwright/Puppeteer arrays — plus header strings; **Netscape is export-only**), protect/pin/block rules, whitelist cleanup, CHIPS partitioned-cookie inspector, DevTools panel, dark mode, virtualized lists.
 
 **Paywall, disclosed upfront:** one paid feature ("Bokal Pro") — named local cookie profiles (snapshot a site's cookies and restore a saved set into the live session in one click, e.g. test accounts, with optional AES-GCM encryption, 100% local in IndexedDB). $4.99/mo, $19.99/yr, $29.99 one-time. Pro is GPL too — you could fork out the check; I'm not relying on license lock-in.
 
@@ -185,7 +185,7 @@ Happy to get into the manifest, the optional-host-permission flow, or the CHIPS 
 - Cookie manager that keeps your cookies on your device (54)
 
 ### Short description
-Bokal is an open-source (GPL-3.0) Manifest V3 cookie manager for Chrome. Full cookie CRUD including HttpOnly, search/filter, protect/pin/block rules, and import/export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats — plus a CHIPS partitioned-cookie inspector and a DevTools panel. No `<all_urls>` at install, no "tabs" permission, no telemetry, no remote code. Free users make zero network calls and your cookie data never leaves your device. Everything's free; the one paid feature (Bokal Pro, $29.99 one-time) adds named local cookie profiles with optional passphrase (AES-GCM) encryption.
+Bokal is an open-source (GPL-3.0) Manifest V3 cookie manager for Chrome. Full cookie CRUD including HttpOnly, search/filter, protect/pin/block rules, and export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats (import covers all of those except Netscape) — plus a CHIPS partitioned-cookie inspector and a DevTools panel. No `<all_urls>` at install, no "tabs" permission, no telemetry, no remote code. Free users make zero network calls and your cookie data never leaves your device. Everything's free; the one paid feature (Bokal Pro, $29.99 one-time) adds named local cookie profiles with optional passphrase (AES-GCM) encryption.
 
 ### First maker comment (founder voice)
 
@@ -204,7 +204,7 @@ Bokal is an open-source (GPL-3.0) Manifest V3 cookie manager for Chrome. Full co
 > **Free (all of it):**
 > - Full cookie CRUD including **HttpOnly** cookies (UI-only tools can't touch those)
 > - Search/filter, protect/pin/block rules, whitelist cleanup
-> - Import/export: JSON, Netscape, cookie-header, Playwright `storageState`/`addCookies`, Puppeteer `setCookie`
+> - Export: JSON, Netscape, cookie-header, Playwright `storageState`/`addCookies`, Puppeteer `setCookie` · Import: all of those except Netscape
 > - CHIPS partitioned-cookie inspector, DevTools panel, dark mode, virtualized lists
 > - Reads Cookie-Editor / EditThisCookie JSON — switching costs nothing
 >
@@ -251,7 +251,7 @@ Bokal doesn't take that grant. Concretely:
 
 None of this is exotic. It's just declining capabilities a cookie editor doesn't strictly need — and the delisting-plus-copycat story is a good argument for why declining them matters. To be clear about what "minimal" means here: it means *narrow* — one site at a time, nothing at install — not *weak*. Within a site you've granted, Bokal has full read/write over its cookies, because that's the job. That access is inherently sensitive, which is precisely why the build is open and checkable.
 
-The rest is the boring feature work you'd expect: full cookie CRUD including HttpOnly cookies (which UI-only, `document.cookie`-based tools can't touch), search and filtering, import/export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats, protect/pin/block rules, a CHIPS partitioned-cookie inspector, a DevTools panel, dark mode. It also reads Cookie-Editor and EditThisCookie JSON, so moving over costs you nothing. And to be fair to the alternatives: Cookie-Editor is free, widely used, and good — the reasons to consider Bokal are the permission posture and the auditability, not a feature contest.
+The rest is the boring feature work you'd expect: full cookie CRUD including HttpOnly cookies (which UI-only, `document.cookie`-based tools can't touch), search and filtering, export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats (import covers all but Netscape), protect/pin/block rules, a CHIPS partitioned-cookie inspector, a DevTools panel, dark mode. It also reads Cookie-Editor and EditThisCookie JSON, so moving over costs you nothing. And to be fair to the alternatives: Cookie-Editor is free, widely used, and good — the reasons to consider Bokal are the permission posture and the auditability, not a feature contest.
 
 ## The honest part about money
 
@@ -288,7 +288,7 @@ Bokal is an open-source (GPL-3.0) Manifest V3 cookie manager for Chrome.
 **3/**
 Full cookie CRUD, including HttpOnly cookies UI-only tools can't touch. Search/filter, protect/pin/block rules, whitelist cleanup, CHIPS partitioned-cookie inspector, DevTools panel, dark mode, virtualized lists.
 
-Import/export: JSON, Netscape, cookie-header, Playwright `storageState`/`addCookies`, Puppeteer `setCookie`.
+Export: JSON, Netscape, cookie-header, Playwright `storageState`/`addCookies`, Puppeteer `setCookie`. Import: the same minus Netscape.
 
 **4/**
 Switching is free — it reads Cookie-Editor / EditThisCookie JSON.
@@ -320,7 +320,7 @@ How it's built:
 • No telemetry, no analytics, no ads, no remote code — everything is bundled (CSP `script-src 'self'`).
 • Local-first: no server, no account. Free users make zero network calls, and your cookie data never leaves your device.
 
-What it does: full cookie CRUD including HttpOnly cookies (which UI-only tools can't edit), search/filter, protect/pin/block rules, whitelist cleanup, a CHIPS partitioned-cookie inspector, a DevTools panel, and import/export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats. It also reads Cookie-Editor and EditThisCookie JSON, so switching costs nothing.
+What it does: full cookie CRUD including HttpOnly cookies (which UI-only tools can't edit), search/filter, protect/pin/block rules, whitelist cleanup, a CHIPS partitioned-cookie inspector, a DevTools panel, and export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats (import covers all but Netscape). It also reads Cookie-Editor and EditThisCookie JSON, so switching costs nothing.
 
 Everything above is free. The only paid tier, Bokal Pro, adds named local cookie profiles — snapshot a site's cookies and restore a saved set into the live session in one click (like different test accounts), with optional AES-GCM passphrase encryption, stored locally in IndexedDB. It's $4.99/mo, $19.99/yr, or $29.99 one-time.
 
@@ -338,7 +338,7 @@ If you work with sessions, auth, or multiple test accounts, I'd genuinely value 
 
 Bokal is an open-source (GPL-3.0), Manifest V3 cookie manager for Chrome — an alternative to EditThisCookie and Cookie-Editor built around verifiable trust. It requests no "tabs" permission and no install-time host permissions: `<all_urls>` is declared only as an optional grant, and access is requested per-site when you open it. No telemetry, no analytics, no ads, no remote code — local-first with no server and no account, so free users make zero network calls and cookie data never leaves the device.
 
-Features: full cookie CRUD including HttpOnly cookies, search/filter, protect/pin/block rules, whitelist cleanup, a CHIPS partitioned-cookie inspector, a DevTools panel, and dark mode. Import/export supports JSON, Netscape, cookie-header, Playwright `storageState`/`addCookies`, and Puppeteer `setCookie`, and it reads Cookie-Editor and EditThisCookie JSON directly.
+Features: full cookie CRUD including HttpOnly cookies, search/filter, protect/pin/block rules, whitelist cleanup, a CHIPS partitioned-cookie inspector, a DevTools panel, and dark mode. Export supports JSON, Netscape, cookie-header, Playwright `storageState`/`addCookies`, and Puppeteer `setCookie`; import covers all of those except Netscape, and it reads Cookie-Editor and EditThisCookie JSON directly.
 
 Freemium: everything above is free. The only paid feature, Bokal Pro, adds named local cookie profiles (snapshot and restore saved cookie sets into the live session) with optional AES-GCM passphrase encryption, stored 100% locally. $4.99/mo, $19.99/yr, or $29.99 one-time.
 
