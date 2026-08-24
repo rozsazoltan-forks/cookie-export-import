@@ -69,8 +69,8 @@ and the CWS listing's privacy URL already points at `bokal.dev/privacy.html` (§
   on the public listing page) — the parked bokal.dev never threatened the review. bokal.dev is now
   fully live (§1 site block); swap the listing URLs to it in the same dashboard visit as the
   1.0.2 upload.
-- **Quality bar:** 125 unit tests (124 at submission; +1 openRestore coverage added in the
-  post-submission review) · tsc clean · build + `check:bundle` guard · zip
+- **Quality bar:** 27 unit test files / 128 test declarations (docs previously said 124–125; recounted
+  2026-08-23) · tsc clean · build + `check:bundle` guard · zip
   113 KB with LICENSE.txt + THIRD-PARTY-NOTICES.txt inside · Playwright E2E green on BOTH build
   variants (incl. full CRUD-through-UI against a real site, the real ExtPay purchase sequence against
   a mocked backend, and wrong-passphrase-destroys-nothing) · **CI green on GitHub Actions** (runs on
@@ -289,7 +289,7 @@ docs/business/  strategy docs (internal; public in repo — see §5.7)
 ## 8. Commands
 
 ```bash
-pnpm -r test                                               # unit (124)
+pnpm -r test                                               # unit (27 files / 128 cases)
 pnpm --filter @bokal/cookie-manager exec tsc --noEmit
 pnpm --filter @bokal/cookie-manager build                  # normal build (publishable)
 pnpm --filter @bokal/cookie-manager check:bundle           # free/Pro split guard
@@ -302,6 +302,16 @@ pnpm --filter @bokal/cookie-manager exec node scripts/gen-promo.mjs        # pro
 ```
 
 ## 9. Hard-won gotchas (do not relearn these)
+
+- **⚠ THE REPO LIVES ON iCLOUD-SYNCED DESKTOP — this fakes test failures.** `FXICloudDriveDesktop`
+  is `1`, so `~/Desktop/Projects/...` (including `node_modules`) is synced. Measured 2026-08-23:
+  `pnpm install` **11m32s**; `pnpm -r test` **375s of which 254s is vitest "prepare" and only 475ms
+  is actual test execution**; `brctl status` hangs. Worst part: iCloud stalls a `readFileSync` of a
+  `.json` during CJS module load and vitest reports `ETIMEDOUT: connection timed out, read` — **2
+  test files silently fail to LOAD** (25 of 27 files ran, 121 of 128 cases), the run exits 1, and it
+  looks exactly like a real regression. It is not. **GitHub Actions CI runs the identical suite
+  green in 1m15s.** Before debugging any local test failure, check whether it is this. Real fix:
+  move the repo off `~/Desktop` to a non-synced path.
 
 - CWS listing title/summary come from the **manifest**, not dashboard fields.
 - CWS images must be **24-bit PNG, NO alpha** (RGBA screenshots get rejected; generators already
