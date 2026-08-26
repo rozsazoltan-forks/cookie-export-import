@@ -147,7 +147,11 @@ which is exactly why the justifications and data-use answers above must be preci
    rebuild.
 2. **Update the landing page:** swap the "Coming soon to Chrome" button in `site/index.html` for the
    real store link, then republish the `gh-pages` branch.
-3. **Raise the lifetime price:** it's at the **$29.99 launch price** — go to **$39** after ~60 days.
+3. **Raise the lifetime price: DEFERRED (revisited 2026-08-26).** The plan was $29.99 → $39 around
+   2026-09-13. Do not. At ~56 installs and 0 conversions there is no data behind a raise, and every
+   "(launch price)" / "rising soon" phrasing has been stripped from the listing and launch copy —
+   manufactured urgency reads badly and publicly commits us. Revisit once there is real traffic;
+   see HANDOFF §0 for the ~150–200-install tripwire.
 4. **Watch the first reviews** — the one-time in-panel review prompt fires after a user's 3rd cookie
    action.
 

@@ -1,8 +1,23 @@
 # Bokal — Store Listing Copy
 
 > Source: `docs/business/2026-07-13-business-recommendations.md` §4. Paste-ready for the
-> Chrome Web Store and Microsoft Edge Add-ons listing forms. Do not alter wording — this is the
-> approved, locked copy.
+> Chrome Web Store and Microsoft Edge Add-ons listing forms.
+>
+> **REVISED 2026-08-26.** The DESCRIPTION below was rewritten for store search and corrected. Two
+> things you must know before touching anything here:
+>
+> 1. **TITLE and SUMMARY are the manifest's `name` and `description` fields — NOT dashboard fields.**
+>    Changing either means editing `wxt.config.ts`, bumping the version, rebuilding and re-uploading,
+>    which restarts review. **Recommendation: leave both alone** and fold any change into the next
+>    real release. See the "TITLE/SUMMARY — proposed, needs a version bump" section at the bottom.
+> 2. **The DESCRIPTION is dashboard-editable.** You can paste the new one today, no version bump, no
+>    re-review of the package. That is where essentially all the free upside is.
+>
+> Corrections applied to the description: removed "(launch price)" from the $29.99 line (no
+> conversion data justifies a raise, and it manufactures urgency); pulled the Playwright/Puppeteer
+> export up into the opening paragraph, since "export cookies playwright" is a high-intent query the
+> old copy buried at bullet seven; and made the Netscape export/import asymmetry explicit rather
+> than leaving it inferable.
 
 ## TITLE (name field — 58 / 75 chars)
 
@@ -26,10 +41,12 @@ Edit, add, view & delete cookies incl. HttpOnly. JSON/Netscape export, JSON impo
 ```
 Bokal is an open-source cookie editor and cookie manager for developers, QA
 engineers, and privacy-minded users. View, edit, add, and delete cookies —
-including HttpOnly cookies — search and filter them, and import or export in
-JSON and Netscape formats. Bokal is the trustworthy, open-source successor for
-anyone left stranded by the EditThisCookie takedown and the copycat that
-replaced it.
+including HttpOnly cookies that UI-only tools cannot touch — search and filter
+them, inspect CHIPS partitioned cookies, and export a logged-in session straight
+to Playwright storageState or Puppeteer setCookie for your test suite.
+
+Free and open source (GPL-3.0), with no account, no telemetry, and no site
+access requested at install.
 
 WHY BOKAL IS SAFE
 Trust is the whole point of Bokal:
@@ -55,9 +72,10 @@ FEATURES
   and oversized cookies right in the list.
 • Export to JSON, Netscape (cookies.txt), and cookie-header formats — no
   "downloads" permission needed.
-• Export for test automation: Playwright storageState and Puppeteer formats.
-• Import from JSON (Cookie-Editor / EditThisCookie compatible), cookie headers,
-  and Playwright/Puppeteer files.
+• Export for test automation: Playwright storageState, Playwright addCookies,
+  and Puppeteer setCookie — log in once by hand, reuse the session in your tests.
+• Import from JSON (Cookie-Editor / EditThisCookie compatible), cookie-header
+  strings, and Playwright/Puppeteer files. (Netscape cookies.txt is export-only.)
 • CHIPS partition inspector for modern partitioned cookies.
 • DevTools panel: inspect and edit the current tab's cookies inside DevTools.
 • Dark mode and fast, virtualized lists across thousands of cookies.
@@ -98,7 +116,7 @@ your profiles never leave your device.
 
 • $4.99 / month
 • $19.99 / year
-• $29.99 one-time — pay once, own it forever (launch price)
+• $29.99 one-time — pay once, own it forever
 
 Already bought Pro? Open Bokal and click "Restore purchase".
 ```
@@ -145,3 +163,47 @@ pnpm --filter @bokal/cookie-manager exec node scripts/gen-screenshots.mjs
 
 *(The old 3 frames showed "0 cookies · unknown site" over a blank panel — the generator opened the
 side panel as a lone page with no tab to bind to. Fixed 2026-07-14.)*
+
+
+---
+
+## TITLE / SUMMARY — proposed, NEEDS A VERSION BUMP (your call)
+
+**Do not action this without deciding you want a release.** Both fields live in
+`apps/cookie-manager/wxt.config.ts` and reach the store through the uploaded package, so changing
+either means: edit manifest → bump version → rebuild → re-zip → re-upload → new review cycle.
+
+**Recommendation: don't do it now.** The current title is already well-formed — it front-loads the
+descriptor, and the ~35-char search truncation reads "Bokal - Cookie Editor & Manager", which
+captures the two highest-intent queries. The gain from the tweaks below is real but small, and it
+does not justify restarting review on its own. Fold it into v1.1 whenever that ships.
+
+### Current (live, v1.0.2)
+
+```
+TITLE   (58/75) : Bokal - Cookie Editor & Manager (Open Source, No Tracking)
+SUMMARY (126/132): Edit, add, view & delete cookies incl. HttpOnly. JSON/Netscape export, JSON import, CHIPS inspector. Open source, no tracking.
+```
+
+### Proposed for the next release
+
+```
+TITLE   (58/75) : Bokal - Cookie Editor & Manager (Open Source, No Tracking)
+SUMMARY (131/132): Edit, add, view & delete cookies incl. HttpOnly. Export to JSON, Netscape, Playwright & Puppeteer. CHIPS inspector. Open source.
+```
+
+**Title: unchanged.** It is doing its job.
+
+**Summary rationale.** Swaps the weakest phrase ("no tracking", already carried by the title's
+trust tail and by the whole description) for **Playwright** and **Puppeteer** — two high-intent
+developer queries that nothing else in the listing surfaces at search-weight. Drops the vague
+"JSON import" in favour of naming concrete export targets. 131/132 chars.
+
+### Do NOT put competitor names in TITLE or SUMMARY
+
+Unchanged guidance, and it matters more now that CWS policy enforcement tightened on 2026-08-01:
+never place "EditThisCookie" or "Cookie-Editor" in the title or summary — that reads as
+impersonation and risks suspension. Naming them inside the description is different and defensible,
+because there the claim is **functional and true**: Bokal imports their JSON export formats. Keep
+it factual on that basis and do not stray into comparative marketing in the listing itself; the
+comparison lives on bokal.dev, where it belongs.
