@@ -42,7 +42,15 @@ To be blunt about what this tool is: reading and writing cookies including HttpO
 
 **Free (all of it):** full cookie CRUD including HttpOnly, search/filter, protect/pin/block rules, whitelist cleanup, a CHIPS partitioned-cookie inspector, a DevTools panel, dark mode, virtualized lists. **Export:** JSON, Netscape, a cookie-header string, Playwright `storageState`, Playwright `addCookies` array, and Puppeteer `setCookie` array. **Import:** JSON — including Cookie-Editor / EditThisCookie exports, Playwright `storageState`, and Playwright/Puppeteer cookie arrays — plus cookie-header strings, so switching costs nothing. To be exact: **Netscape is export-only** (import doesn't parse `cookies.txt` yet).
 
-**Not a knock on the incumbent:** Cookie-Editor is free, has ~2M users, and is a perfectly good tool. The only reasons to look at Bokal are the permission posture and that it's open-source and auditable — not a feature war.
+**Being straight about the incumbent, because half of what I first wrote here was wrong.** Cookie-Editor is free, has ~2M users and 4.4★, is **also GPL-3.0** (1.7k GitHub stars), migrated to MV3 back in 2022, and has used `optional_host_permissions` since **August 2023**. So "open source" and "no install-time host permissions" are **not** things that separate Bokal from it. I pulled its `manifest.chrome.json` before writing this and corrected myself; better that than have you do it for me in the comments.
+
+What actually differs is narrower, and all three are checkable:
+
+- **Cookie-Editor requests `tabs`. Bokal doesn't** — it uses `activeTab` instead. `tabs` is the permission that makes Chrome show **"Read your browsing history"** on the install screen. That's the one permission-line difference, and you can see it before you click Add.
+- **CHIPS / partitioned cookies** — Bokal has a partition inspector; Cookie-Editor's codebase contains no `partitionKey` handling at all.
+- **Automation export** — Playwright `storageState` / `addCookies` and Puppeteer `setCookie`. Cookie-Editor has none.
+
+If you don't touch partitioned cookies or test automation, and the browsing-history warning doesn't bother you, Cookie-Editor is a genuinely good tool and I'd rather you keep using it than switch on vibes.
 
 **The one paid feature — Bokal Pro:** named local cookie profiles. Snapshot a site's cookies as a profile, then switch between saved sets in one click — and "switch" means it restores that set *into the live session in place* (across HttpOnly and partitioned cookies), not export-a-file-then-reimport. Optional AES-GCM (256-bit, PBKDF2 600k) passphrase encryption, everything in IndexedDB. $4.99/mo · $19.99/yr · $29.99 one-time.
 

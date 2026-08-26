@@ -66,7 +66,15 @@ To be blunt about what this tool is: reading and writing cookies including HttpO
 
 **Free (all of it):** full cookie CRUD including HttpOnly, search/filter, protect/pin/block rules, whitelist cleanup, a CHIPS partitioned-cookie inspector, a DevTools panel, dark mode, virtualized lists. **Export:** JSON, Netscape, a cookie-header string, Playwright `storageState`, Playwright `addCookies` array, and Puppeteer `setCookie` array. **Import:** JSON — including Cookie-Editor / EditThisCookie exports, Playwright `storageState`, and Playwright/Puppeteer cookie arrays — plus cookie-header strings, so switching costs nothing. To be exact: **Netscape is export-only** (import doesn't parse `cookies.txt` yet).
 
-**Not a knock on the incumbent:** Cookie-Editor is free, has ~2M users, and is a perfectly good tool. The only reasons to look at Bokal are the permission posture and that it's open-source and auditable — not a feature war.
+**Being straight about the incumbent, because half of what I first wrote here was wrong.** Cookie-Editor is free, has ~2M users and 4.4★, is **also GPL-3.0** (1.7k GitHub stars), migrated to MV3 back in 2022, and has used `optional_host_permissions` since **August 2023**. So "open source" and "no install-time host permissions" are **not** things that separate Bokal from it. I pulled its `manifest.chrome.json` before writing this and corrected myself; better that than have you do it for me in the comments.
+
+What actually differs is narrower, and all three are checkable:
+
+- **Cookie-Editor requests `tabs`. Bokal doesn't** — it uses `activeTab` instead. `tabs` is the permission that makes Chrome show **"Read your browsing history"** on the install screen. That's the one permission-line difference, and you can see it before you click Add.
+- **CHIPS / partitioned cookies** — Bokal has a partition inspector; Cookie-Editor's codebase contains no `partitionKey` handling at all.
+- **Automation export** — Playwright `storageState` / `addCookies` and Puppeteer `setCookie`. Cookie-Editor has none.
+
+If you don't touch partitioned cookies or test automation, and the browsing-history warning doesn't bother you, Cookie-Editor is a genuinely good tool and I'd rather you keep using it than switch on vibes.
 
 **The one paid feature — Bokal Pro:** named local cookie profiles. Snapshot a site's cookies as a profile, then switch between saved sets in one click — and "switch" means it restores that set *into the live session in place* (across HttpOnly and partitioned cookies), not export-a-file-then-reimport. Optional AES-GCM (256-bit, PBKDF2 600k) passphrase encryption, everything in IndexedDB. $4.99/mo · $19.99/yr · $29.99 one-time.
 
@@ -251,7 +259,7 @@ Bokal doesn't take that grant. Concretely:
 
 None of this is exotic. It's just declining capabilities a cookie editor doesn't strictly need — and the delisting-plus-copycat story is a good argument for why declining them matters. To be clear about what "minimal" means here: it means *narrow* — one site at a time, nothing at install — not *weak*. Within a site you've granted, Bokal has full read/write over its cookies, because that's the job. That access is inherently sensitive, which is precisely why the build is open and checkable.
 
-The rest is the boring feature work you'd expect: full cookie CRUD including HttpOnly cookies (which UI-only, `document.cookie`-based tools can't touch), search and filtering, export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats (import covers all but Netscape), protect/pin/block rules, a CHIPS partitioned-cookie inspector, a DevTools panel, dark mode. It also reads Cookie-Editor and EditThisCookie JSON, so moving over costs you nothing. And to be fair to the alternatives: Cookie-Editor is free, widely used, and good — the reasons to consider Bokal are the permission posture and the auditability, not a feature contest.
+The rest is the boring feature work you'd expect: full cookie CRUD including HttpOnly cookies (which UI-only, `document.cookie`-based tools can't touch), search and filtering, export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats (import covers all but Netscape), protect/pin/block rules, a CHIPS partitioned-cookie inspector, a DevTools panel, dark mode. It also reads Cookie-Editor and EditThisCookie JSON, so moving over costs you nothing. And to be fair to the alternatives: Cookie-Editor is free, widely used, GPL-3.0 like Bokal, and has used optional host permissions since 2023 — so neither "open source" nor "no install-time host access" tells the two apart. What does: it requests `tabs` (the "read your browsing history" warning) where Bokal uses `activeTab`, and it has no partitioned-cookie or Playwright/Puppeteer support. That's a narrower case than I'd have liked to make, but it's the true one.
 
 ## The honest part about money
 
@@ -355,7 +363,7 @@ Freemium: everything above is free. The only paid feature, Bokal Pro, adds named
 **B. "Cookie-Editor alternative"**
 - **Title tag:** Cookie-Editor Alternative: Open-Source, Minimal-Permission Cookie Manager — Bokal
 - **H1:** A Cookie-Editor alternative built for developers who read the permissions.
-- **Angle:** Comparison-intent page for people on the ~2M-user incumbent. Differentiate on verifiable trust (no "tabs" permission, no install-time host permissions, no telemetry/remote code, GPL-3.0 source) and dev features (HttpOnly editing, CHIPS inspector, Playwright/Puppeteer export). Include a fair feature table and concede Cookie-Editor is free — no bashing.
+- **Angle:** Comparison-intent page for people on the ~2M-user incumbent. Differentiate ONLY on what actually differs (verified 2026-08-26): no `tabs` permission = no "read your browsing history" install warning; CHIPS partition inspector; Playwright/Puppeteer export. Do NOT claim open source or optional host permissions as differentiators — Cookie-Editor is GPL-3.0 and has used optional_host_permissions since Aug 2023. Plus dev features (HttpOnly editing, CHIPS inspector, Playwright/Puppeteer export). Include a fair feature table and concede Cookie-Editor is free — no bashing.
 
 **C. "export cookies for Playwright"**
 - **Title tag:** Export Cookies for Playwright (storageState) from Chrome — Bokal

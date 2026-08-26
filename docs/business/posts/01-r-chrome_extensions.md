@@ -2,7 +2,7 @@
 
 > **Gate / rules:** No karma/age/flair gate. Only hard rule: don't blast the same post across many subs the same day (Rule 4 -> reported to admins). Highest-fit venue: the room full of displaced EditThisCookie users.
 
-> Paste-ready. Verified against source 2026-08-23. Do NOT claim Edge availability. Do NOT claim Netscape *import* (export only).
+> Paste-ready. Verified against Bokal's source AND Cookie-Editor's published manifest, 2026-08-26. Do NOT claim Edge availability. Do NOT claim Netscape *import* (export only).
 
 ---
 
@@ -26,6 +26,14 @@ What that means, precisely:
 - **No remote code** — everything runs from the bundled package (`script-src 'self'`).
 - The only external service it ever contacts is ExtensionPay, for the Pro license check, and only after you open the upgrade page. The service worker deliberately doesn't start ExtPay on load (`entrypoints/background.ts`), and a test asserts a free user makes zero ExtPay calls (`lib/pay/paid-flow.test.ts`). Verify it yourself in DevTools → Network.
 - GPL-3.0, so all of the above is checkable, not just claimed.
+
+**Where this does and doesn't beat Cookie-Editor — because someone will check, and they should.** Cookie-Editor is the ~2M-user incumbent here, it's **also GPL-3.0**, and it's used `optional_host_permissions` since August 2023. So "open source" and "no install-time host access" do *not* separate us; I pulled its manifest before posting rather than let that be the top comment. Three things actually differ:
+
+1. **It requests `tabs`; Bokal uses `activeTab`.** `tabs` is what triggers Chrome's **"Read your browsing history"** line on the install screen. Visible before you install either one.
+2. **CHIPS partitioned cookies** — Bokal ships a partition inspector; Cookie-Editor's code has no `partitionKey` handling.
+3. **Playwright `storageState` / `addCookies` and Puppeteer `setCookie` export** — Cookie-Editor has none.
+
+If none of those three matter to you, Cookie-Editor is a good tool and I'd honestly rather you keep using it than switch for no reason.
 
 Why I bothered: EditThisCookie was delisted back in Dec 2024 (most plausibly a failed MV3 migration; [gHacks](https://www.ghacks.net/2024/12/31/google-chrome-legit-editthiscookie-extension-removed-instead-of-malicious-copycat/) — no official reason from Google), and a [copycat](https://cybersecuritynews.com/malicious-editthiscookie-chrome-extension/) then took the name and was caught harvesting credentials/tokens and phishing. For a tool that by definition handles your session cookies, I wanted one that's narrow-by-default and fully auditable.
 
