@@ -74,9 +74,9 @@ Do **not** spend a launch post here. Each has a strong audience — mine it by h
 | **1** | **Wed Aug 26** | **r/chrome_extensions** (GREEN) — flagship | Full successor story + GitHub/CWS links; Pro footnote. Your best room; spend your best post here. Copy: `posts/01-r-chrome_extensions.md` |
 | **2** | **Thu Aug 27** | **r/SideProject** (GREEN) | Builder narrative + the honest "shipped it and told nobody, 51 users / $0" postmortem. Story, not spec. Copy: `posts/02-r-sideproject.md` |
 | **3** | **Sat Aug 29** | **r/webdev — Showoff Saturday** (YELLOW, Saturday-gated) | Pure engineering show-and-tell, Showoff Saturday flair, **no pricing at all** (Rule 3 = ban). Copy: `posts/03-r-webdev-showoff-saturday.md` (pricing already stripped) |
-| **4** | **Sun Aug 30** | **r/opensource** (YELLOW) | "Promotional" flair; GPL-3.0 / auditable-code framing; Pro backgrounded. |
-| **5** | **Mon Aug 31** | **r/coolgithubprojects** (GREEN) | Repo share, `[JavaScript] Bokal — …` title format + JS flair. |
-| *+2* | **Wed Sep 2** | **r/software** (YELLOW, Wednesday-gated) | "Releases" flair; open-source, not-paywalled framing + successor context. |
+| **4** | **Sun Aug 30** | **r/opensource** (YELLOW) | "Promotional" flair; GPL-3.0 / auditable-code framing; Pro backgrounded. Copy: `posts/07-r-opensource.md` |
+| **5** | **Mon Aug 31** | **r/coolgithubprojects** (GREEN) | Repo share; title tag + language flair must match. Copy: `posts/08-r-coolgithubprojects.md` |
+| *+2* | **Wed Sep 2** | **r/software** (YELLOW, Wednesday-gated) | "Releases" flair; open-source, not-paywalled framing + successor context. Copy: `posts/09-r-software.md` |
 | **HN** | **Thu Sep 3** | **Show HN** — 8–10am ET | Only after the Reddit wave has stress-tested the claims. Clear 4–6 hours to reply. Copy: `posts/04-show-hn.md` |
 | **PH** | **Tue Sep 8** | **Product Hunt** — 12:01am PT | Fold in quotes/feedback earned on HN + Reddit first. Copy: `posts/05-product-hunt.md` |
 

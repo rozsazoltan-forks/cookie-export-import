@@ -5,14 +5,23 @@
 <h1 align="center">Bokal</h1>
 
 <p align="center">
-  A trustworthy, open-source cookie manager for Chrome and Edge (Manifest V3).<br>
+  A trustworthy, open-source cookie manager for Chrome (Manifest V3).<br>
   View, edit, add, delete, import, and export cookies — with nothing leaving your device.
+</p>
+
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/bokal-cookie-editor-manag/oidemgbbhocfepdadkmfdlbjgdcjdldd"><img src="https://img.shields.io/chrome-web-store/v/oidemgbbhocfepdadkmfdlbjgdcjdldd?label=chrome%20web%20store" alt="Chrome Web Store version"></a>
+  <a href="https://chromewebstore.google.com/detail/bokal-cookie-editor-manag/oidemgbbhocfepdadkmfdlbjgdcjdldd"><img src="https://img.shields.io/chrome-web-store/users/oidemgbbhocfepdadkmfdlbjgdcjdldd?label=users" alt="Users"></a>
+  <a href="https://chromewebstore.google.com/detail/bokal-cookie-editor-manag/oidemgbbhocfepdadkmfdlbjgdcjdldd"><img src="https://img.shields.io/chrome-web-store/stars/oidemgbbhocfepdadkmfdlbjgdcjdldd?label=rating" alt="Rating"></a>
+  <a href="https://github.com/yuvibabbar-dev/bokal/actions/workflows/ci.yml"><img src="https://github.com/yuvibabbar-dev/bokal/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue" alt="License GPL-3.0-or-later"></a>
 </p>
 
 ---
 
 > **Status:** **LIVE on the [Chrome Web Store](https://chromewebstore.google.com/detail/bokal-cookie-editor-manag/oidemgbbhocfepdadkmfdlbjgdcjdldd)** (published 2026-07-15).
-> Edge Add-ons submission is next. See [`docs/HANDOFF.md`](docs/HANDOFF.md) for the current state.
+> **Chrome and Chromium browsers only.** An Edge Add-ons submission is outstanding and unconfirmed —
+> do not treat Bokal as available on Edge. See [`docs/HANDOFF.md`](docs/HANDOFF.md) for current state.
 >
 > **License:** [**GPL-3.0-or-later**](LICENSE). Bokal bundles ExtPay, which is copyleft
 > (AGPL-3.0-or-later), so the combined work is conveyed under GPL-compatible terms — a permissive
@@ -64,11 +73,38 @@ Pro is deliberately minimal on privacy impact:
   is only ever contacted after you open the upgrade page. See
   [`docs/pro-monetization.md`](docs/pro-monetization.md).
 
+## How Bokal compares
+
+Being straight about this, because the obvious comparison is
+[Cookie-Editor](https://github.com/Moustachauve/cookie-editor) (~2M users) and half of what you'd
+expect to separate them doesn't. **Cookie-Editor is also GPL-3.0, also Manifest V3 (since 2022), and
+has also used `optional_host_permissions` rather than install-time site access since August 2023.**
+So "open source" and "no install-time host permissions" are *not* reasons to prefer Bokal.
+
+What actually differs (verified against its published `manifest.chrome.json`, 2026-08-26):
+
+| | Bokal | Cookie-Editor |
+|---|---|---|
+| `tabs` permission | **not requested** (uses `activeTab`) | requested |
+| "Read your browsing history" at install | **no** | yes — consequence of `tabs` |
+| Install-time site access | none (optional grant) | none (optional grant) |
+| License | GPL-3.0 | GPL-3.0 |
+| CHIPS partitioned cookies | **partition inspector** | no `partitionKey` handling |
+| Playwright `storageState` export | **yes** | no |
+| Puppeteer `setCookie` export | **yes** | no |
+| Users / track record | small, launched 2026 | ~2M, 4.4★ |
+| Browsers | Chrome / Chromium | Chrome, Edge, Firefox, Opera, Safari |
+
+If you don't work with partitioned cookies or test automation and the browsing-history permission
+doesn't bother you, Cookie-Editor is a good tool and you should use it. Longer write-up:
+[bokal.dev/cookie-editor-alternative](https://bokal.dev/cookie-editor-alternative.html).
+
 ## Trust posture
 
 Every privacy claim here is meant to be **literally true against the code** — that's the product.
 
-- **No `tabs` permission**, and **no install-time `host_permissions`.** Host access is
+- **No `tabs` permission** — so no "read your browsing history" warning at install. (**No
+  install-time `host_permissions`** either, though as noted above that part is not unique.) Host access is
   `optional_host_permissions: ['<all_urls>']`, requested at runtime for the specific site you're
   managing (via `activeTab` to read the current URL), and only escalated to all-sites when you
   explicitly open the all-cookies view, export all sites, or run cleanup.
@@ -124,6 +160,12 @@ pnpm --filter @bokal/cookie-manager e2e                   # Playwright E2E (smok
 
 CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) runs type-check, unit tests, build, and
 Playwright E2E against **both** the normal and E2E builds on every push and PR.
+
+## Guides
+
+- [EditThisCookie alternative](https://bokal.dev/editthiscookie-alternative.html) — what happened to it, and migrating your JSON
+- [Bokal vs Cookie-Editor](https://bokal.dev/cookie-editor-alternative.html) — the honest comparison
+- [Export cookies for Playwright](https://bokal.dev/export-cookies-playwright.html) — `storageState` how-to
 
 ## Contributing & security
 
