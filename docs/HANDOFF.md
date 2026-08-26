@@ -14,12 +14,17 @@ weeks. Verified 2026-08-23: GitHub shows **0 stars / 0 forks / 0 issues**, and t
 between 2026-07-15 and today. Nothing has ever been posted to HN, Reddit, Product Hunt, or anywhere
 else.
 
-**Live numbers (public, verified 2026-08-23):** **26 CWS users**, **5.0★ from 2 ratings**, v1.0.2,
-listing last updated 2026-07-16. All 26 installs are organic Chrome Web Store search — the listing
-converts on impressions, it just has almost none. 13 → 26 over the five quiet weeks.
+**Live numbers (public, verified 2026-08-25):** **51 CWS users**, **5.0★ from 2 ratings**, v1.0.2,
+listing last updated 2026-07-16. Every install is organic Chrome Web Store search — the listing
+converts on impressions, it just has almost none. Trajectory: **13 → 26 (Aug 23) → 51 (Aug 25)**,
+still with 0 GitHub stars, i.e. still zero promotion. Organic store-search demand alone is roughly
+doubling it; this is the strongest signal in the project and it argues the product/listing is fine
+and only distribution is missing.
 
-**Revenue: $0.** This is *not yet a signal.* 26 installs × a realistic 1–4% freemium conversion
-predicts 0.3–1 sales; zero is on-model. The question "will anyone pay for Pro?" does not become
+**Revenue: $0.** Still *barely* not a signal, but it is getting closer to being one. 51 installs ×
+a realistic 1–4% freemium conversion predicts 0.5–2 sales, so zero is at the edge of expected rather
+than squarely inside it. Watch it: **if installs pass ~150–200 and revenue is still exactly $0, that
+stops being noise** and the paywall/pricing genuinely needs looking at. The question "will anyone pay for Pro?" does not become
 answerable until roughly **500–2,000 installs**. Do not re-cut pricing, the free/Pro line, or
 features in response to the current zero.
 
@@ -43,7 +48,8 @@ and the CWS listing's privacy URL already points at `bokal.dev/privacy.html` (§
 - Recalculated the posting calendar to live dates, Reddit-before-HN.
 
 **Open, blocking the announce — FOUNDER:**
-1. **Post.** Day 1 = r/chrome_extensions, Tue 2026-08-25. Copy is in `docs/business/posts/`.
+1. **Post.** Day 1 = r/chrome_extensions. Originally Tue 2026-08-25 — **that day passed unposted
+   (0 GitHub stars at 21:07)**; slipped to **Wed 2026-08-26**. Copy is in `docs/business/posts/`.
    Nothing else on this list matters until this happens.
 2. **Edge:** submitted 2026-07-15 "under review ~7 business days"; five weeks on, Bokal does not
    appear in the Edge store. Check Partner Center — rejected, stalled, or unindexed. Until then no
@@ -220,7 +226,8 @@ submitted zip** (that can reset the review). The changes and our status:
    the per-site activeTab grant prompts for the specific site (verified in a real browser).** The
    minimal-permissions store claim is now human-verified end to end; the live-payment test the
    same day proved checkout/entitlement. No findings. (v1.0.1 = MPL-notice zip, built but never
-   uploaded — SUPERSEDED by v1.0.2, which adds the header Unlock-Pro chip; upload 1.0.2.)
+   uploaded — SUPERSEDED by v1.0.2. **v1.0.2 IS UPLOADED AND LIVE** since 2026-07-16; verified on the
+   public listing 2026-08-25. Nothing is pending at the Chrome Web Store.)
 4. **EU-DSA trader verification** — pending at Google; no action unless they ask for more info.
    (If offered individual vs organization: individual avoids the ~30-day D-U-N-S detour.)
 5. (AGENT, post-launch) **Reverse trial (M13):** 7-day full-Pro on 2nd-profile trigger. Deliberately

@@ -2,13 +2,13 @@
 
 > **Gate / rules:** No karma/age/flair gate. Must show a *working* product (Bokal is live on the CWS ✓). No affiliate links ✓. Commercial products are explicitly fine here **if framed as a story, not a sales pitch** — so this post leads with the build and the failure, not the features.
 
-> Written 2026-08-23 (the launch kit had no r/SideProject body). Verified against source. Do NOT claim Edge availability. Do NOT claim Netscape *import* (export only).
+> Written 2026-08-23, numbers refreshed 2026-08-25 (the launch kit had no r/SideProject body). **Re-check the live user count before posting — it is moving.** Verified against source. Do NOT claim Edge availability. Do NOT claim Netscape *import* (export only).
 
 ---
 
 ### r/SideProject
 
-**Title:** I spent months building a cookie manager "properly," shipped it, then told literally nobody — 26 users, $0
+**Title:** I spent months building a cookie manager "properly," shipped it, then told literally nobody — 51 users, $0
 
 **Body:**
 
@@ -36,7 +36,7 @@ No `tabs` permission. No host permissions at install. `<all_urls>` exists only a
 
 And then I posted **none of it.** For five weeks.
 
-Current numbers, honestly: **26 users, 5.0★ from 2 ratings, $0 revenue.** Every one of those installs came from people typing "cookie editor" into the Chrome Web Store and picking mine. Zero GitHub stars, because zero people have ever been sent there.
+Current numbers, honestly: **51 users, 5.0★ from 2 ratings, $0 revenue.** It roughly doubled over the last few days and every one of those installs came from people typing "cookie editor" into the Chrome Web Store and picking mine. Zero GitHub stars, because zero people have ever been sent there.
 
 **What I think I got wrong:** I treated "ship it" as the finish line, when shipping is maybe 60% of it. I also think I used polishing as a way to avoid the genuinely uncomfortable part, which is walking into a room and saying "I made this, please look at it." Writing a launch kit *felt* like launching. It isn't. This post is me finally doing the actual thing.
 
