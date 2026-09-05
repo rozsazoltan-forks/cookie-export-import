@@ -13,7 +13,15 @@ find in older notes from before that date is INVALID. `git log` is authoritative
 
 **Status: IN REVIEW — zip AND description both submitted (founder, 2026-09-04 ~22:45 and ~23:05).**
 The description went in as a second submission a few minutes after the zip (it was initially
-forgotten); `DESCRIPTION-paste-v1.1.md` is what was pasted. Public listing still serves 1.0.2 until
+forgotten); `DESCRIPTION-paste-v1.1.md` is what was pasted.
+**⏰ A LOCAL SCHEDULED TASK NOW OWNS THE FOLLOW-UP:** `bokal-v1-1-0-approval-watch`
+(`~/.claude/scheduled-tasks/bokal-v1-1-0-approval-watch/SKILL.md`), every 2 hours while the Claude
+desktop app is open (catches up on next launch if it was closed). Each run: curl the public listing →
+if not 1.1.0, stop; if 1.1.0 and bokal.dev still says "Export only", run the whole POST-PUBLISH
+CHECKLIST (flip caveats, README, HANDOFF, memory, push main, redeploy gh-pages, verify), then disable
+itself. **Do not run the checklist by hand without first checking whether the task already did it**
+(`curl -s https://bokal.dev/export-cookies-txt-chrome.html | grep -c "Export only"` → 0 = done).
+The in-session Monitor that previously watched the listing was stopped in favour of this. Public listing still serves 1.0.2 until
 Google approves (typically 1–3 days; the live version stays up throughout). The public listing page
 is the approval signal — when it shows `1.1.0`, run the POST-PUBLISH CHECKLIST below immediately,
 because 18 files go false that moment. **Gotcha learned:** Chrome forbids extensions from scripting
