@@ -9,7 +9,15 @@ find in older notes from before that date is INVALID. `git log` is authoritative
 
 ## 0. ⚠ STATE AS OF 2026-09-04 — READ THIS FIRST
 
-### v1.1.0 — BUILT, FULLY VERIFIED, NOT YET UPLOADED (2026-09-04)
+### v1.1.0 — UPLOADED TO CWS AND SUBMITTED FOR REVIEW (founder, 2026-09-04 ~22:45)
+
+**Status: IN REVIEW.** Public listing still serves 1.0.2 until Google approves (typically 1–3 days;
+the live version stays up throughout). The public listing page is the approval signal — when it
+shows `1.1.0`, run the POST-PUBLISH CHECKLIST below immediately, because 18 files go false that
+moment. Confirm the description was pasted in the same session (`DESCRIPTION-paste-v1.1.md`); if it
+was not, the live description will still say "Netscape cookies.txt is export-only" under a 1.1.0
+summary that says "Import/export JSON & Netscape" — fix in the dashboard, no re-upload needed.
+
 
 **MERGED to `main` as `909855f` (2026-09-04)** — branch `release/v1.1.0` deleted. Commits `59ff441`
 feat, `a869c03` release, `6832a3f` docs. `main` now == the 1.1.0 build; the store is still on 1.0.2
