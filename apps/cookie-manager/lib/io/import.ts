@@ -1,5 +1,7 @@
 import type { CookieAttrs, SameSite } from '../cookie-types';
 import { fromAutomationJson } from './automation';
+import { parseHeaderString } from './header';
+import { parseNetscape } from './netscape';
 
 const SAME_SITES: SameSite[] = ['no_restriction', 'lax', 'strict', 'unspecified'];
 
@@ -60,4 +62,22 @@ export function parseCookiesJson(text: string): ParseResult {
     if (c) cookies.push(c);
   });
   return { cookies, errors };
+}
+
+export type ImportFormat = 'json' | 'netscape' | 'header' | null;
+export interface ImportResult extends ParseResult { format: ImportFormat }
+
+// Detect the import format and parse. Order matters: JSON is unambiguous; Netscape is
+// tab-structured and must run before the header parser, which is permissive enough to "succeed"
+// on almost any text containing an "=". `domain` scopes header-string cookies, which carry none.
+export function parseImport(text: string, domain: string): ImportResult {
+  const json = parseCookiesJson(text);
+  if (json.cookies.length > 0 || json.errors[0] !== 'Invalid JSON') return { ...json, format: 'json' };
+  const netscape = parseNetscape(text);
+  if (netscape.cookies.length > 0) return { ...netscape, format: 'netscape' };
+  const header = parseHeaderString(text, domain);
+  if (header.length > 0) return { cookies: header, errors: [], format: 'header' };
+  // Nothing matched. Prefer a Netscape structural error (a tab-separated file that is broken) over
+  // the generic JSON complaint, since that is the more useful thing to show.
+  return { cookies: [], errors: netscape.errors.length ? netscape.errors : json.errors, format: null };
 }
