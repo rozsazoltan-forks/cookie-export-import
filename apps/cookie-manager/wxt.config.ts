@@ -7,11 +7,11 @@ export default defineConfig({
     // The Chrome Web Store takes the listing's TITLE and SUMMARY from the manifest — they are NOT
     // editable in the dashboard. So the SEO-front-loaded title from docs/store/listing.md has to
     // live here, or the listing ships as the bare word "Bokal", which nobody searches for.
-    // name: 58/75 chars · description: 126/132 chars.
+    // name: 58/75 chars · description: 130/132 chars.
     name: 'Bokal - Cookie Editor & Manager (Open Source, No Tracking)',
-    version: '1.0.2',
+    version: '1.1.0',
     description:
-      'Edit, add, view & delete cookies incl. HttpOnly. JSON/Netscape export, JSON import, CHIPS inspector. Open source, no tracking.',
+      'View, edit, add & delete cookies incl. HttpOnly. Import/export JSON & Netscape, export to Playwright & Puppeteer. CHIPS inspector.',
     // Product homepage. (GPL source-pointing is satisfied by the in-panel Source link, README, and
     // THIRD-PARTY-NOTICES, which all reference the GitHub repo.)
     homepage_url: 'https://bokal.dev',
