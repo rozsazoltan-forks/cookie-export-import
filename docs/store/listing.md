@@ -167,16 +167,11 @@ side panel as a lone page with no tab to bind to. Fixed 2026-07-14.)*
 
 ---
 
-## TITLE / SUMMARY — proposed, NEEDS A VERSION BUMP (your call)
+## TITLE / SUMMARY — SHIPPED in the 1.1.0 build (2026-09-04)
 
-**Do not action this without deciding you want a release.** Both fields live in
-`apps/cookie-manager/wxt.config.ts` and reach the store through the uploaded package, so changing
-either means: edit manifest → bump version → rebuild → re-zip → re-upload → new review cycle.
-
-**Recommendation: don't do it now.** The current title is already well-formed — it front-loads the
-descriptor, and the ~35-char search truncation reads "Bokal - Cookie Editor & Manager", which
-captures the two highest-intent queries. The gain from the tweaks below is real but small, and it
-does not justify restarting review on its own. Fold it into v1.1 whenever that ships.
+Both fields live in `apps/cookie-manager/wxt.config.ts` and reach the store through the uploaded
+package. The 1.1.0 zip carries the summary below; it goes live when that zip is approved. The title
+is unchanged (it already truncates to "Bokal - Cookie Editor & Manager" in search results).
 
 ### Current (live, v1.0.2)
 
@@ -185,19 +180,18 @@ TITLE   (58/75) : Bokal - Cookie Editor & Manager (Open Source, No Tracking)
 SUMMARY (126/132): Edit, add, view & delete cookies incl. HttpOnly. JSON/Netscape export, JSON import, CHIPS inspector. Open source, no tracking.
 ```
 
-### Proposed for the next release
+### In the 1.1.0 zip (pending upload)
 
 ```
 TITLE   (58/75) : Bokal - Cookie Editor & Manager (Open Source, No Tracking)
-SUMMARY (131/132): Edit, add, view & delete cookies incl. HttpOnly. Export to JSON, Netscape, Playwright & Puppeteer. CHIPS inspector. Open source.
+SUMMARY (130/132): View, edit, add & delete cookies incl. HttpOnly. Import/export JSON & Netscape, export to Playwright & Puppeteer. CHIPS inspector.
 ```
 
-**Title: unchanged.** It is doing its job.
-
-**Summary rationale.** Swaps the weakest phrase ("no tracking", already carried by the title's
-trust tail and by the whole description) for **Playwright** and **Puppeteer** — two high-intent
-developer queries that nothing else in the listing surfaces at search-weight. Drops the vague
-"JSON import" in favour of naming concrete export targets. 131/132 chars.
+**Summary rationale.** "Import/export JSON & Netscape" is true as of 1.1.0 (Netscape import
+shipped). Adds **Playwright** and **Puppeteer** — two high-intent developer queries nothing else in
+the listing carried at search weight. Drops "Open source" and "no tracking" from the summary; the
+title carries both. 130/132 chars — the 132 limit is enforced by an assertion in the release
+tooling, which caught a 140-char first draft.
 
 ### Do NOT put competitor names in TITLE or SUMMARY
 

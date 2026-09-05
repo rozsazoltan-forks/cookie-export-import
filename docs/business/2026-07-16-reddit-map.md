@@ -61,24 +61,30 @@ Do **not** spend a launch post here. Each has a strong audience — mine it by h
 
 ---
 
-## 4. Five-Day Posting Calendar
+## 4. Posting Calendar — RELATIVE (rewritten 2026-09-04)
 
-*Recalculated **Sunday, 2026-08-23**; Days 1–2 slipped one day on **Tue 2026-08-25** (Day 1 passed unposted). Every date-gated slot below is unaffected — r/webdev stays Saturday, r/software stays Wednesday.*
+*Two dated versions of this calendar (Jul 16, Aug 23/25) lapsed unposted. It is now relative: pick
+**Day 1 = the next weekday morning you actually post**, and everything else follows. The only
+absolute constraints are the two day-gated subs, which are rules, not dates.*
 
-*Original note:* — the original July calendar lapsed unfired. One native (non-crossposted) post per day; founder replies in comments. Vary the angle each day so it never looks like a blast — Reddit's spam filter and r/chrome_extensions Rule 4 both target identical multi-sub launches, which is the actual ban vector.*
+*Reddit runs **before** Show HN on purpose. HN is the highest-scrutiny room and you get one clean
+shot; the Reddit wave is where you find out which claims get challenged. The 2026-08-23 audit caught
+"Netscape import" (false until 1.1.0 ships) and the 2026-08-26 audit caught the whole "minimal
+permissions / open source" pitch being table stakes against Cookie-Editor. Better found on Reddit.*
 
-*Reddit runs **before** Show HN on purpose. HN is the highest-scrutiny room and you only get one clean shot; the Reddit wave is where you find out which claims get challenged first. This is not hypothetical — the 2026-08-23 source audit caught the kit claiming "Netscape import" when Bokal only *exports* Netscape. Better to find the next one of those in r/chrome_extensions than on the HN front page.*
-
-| Day | Date | Post | Angle (unique per sub) |
+| Day | Post | Constraint | Copy |
 |---|---|---|---|
-| **1** | **Wed Aug 26** | **r/chrome_extensions** (GREEN) — flagship | Full successor story + GitHub/CWS links; Pro footnote. Your best room; spend your best post here. Copy: `posts/01-r-chrome_extensions.md` |
-| **2** | **Thu Aug 27** | **r/SideProject** (GREEN) | Builder narrative + the honest "shipped it and told nobody, 51 users / $0" postmortem. Story, not spec. Copy: `posts/02-r-sideproject.md` |
-| **3** | **Sat Aug 29** | **r/webdev — Showoff Saturday** (YELLOW, Saturday-gated) | Pure engineering show-and-tell, Showoff Saturday flair, **no pricing at all** (Rule 3 = ban). Copy: `posts/03-r-webdev-showoff-saturday.md` (pricing already stripped) |
-| **4** | **Sun Aug 30** | **r/opensource** (YELLOW) | "Promotional" flair; GPL-3.0 / auditable-code framing; Pro backgrounded. Copy: `posts/07-r-opensource.md` |
-| **5** | **Mon Aug 31** | **r/coolgithubprojects** (GREEN) | Repo share; title tag + language flair must match. Copy: `posts/08-r-coolgithubprojects.md` |
-| *+2* | **Wed Sep 2** | **r/software** (YELLOW, Wednesday-gated) | "Releases" flair; open-source, not-paywalled framing + successor context. Copy: `posts/09-r-software.md` |
-| **HN** | **Thu Sep 3** | **Show HN** — 8–10am ET | Only after the Reddit wave has stress-tested the claims. Clear 4–6 hours to reply. Copy: `posts/04-show-hn.md` |
-| **PH** | **Tue Sep 8** | **Product Hunt** — 12:01am PT | Fold in quotes/feedback earned on HN + Reddit first. Copy: `posts/05-product-hunt.md` |
+| **1** | **r/chrome_extensions** (GREEN) — flagship | any weekday morning ET | `posts/01` |
+| **2** | **r/SideProject** (GREEN) | next day; **update the user count in title + body** | `posts/02` |
+| **first Saturday ≥ Day 3** | **r/webdev — Showoff Saturday** (YELLOW) | **SATURDAY ONLY**; Showoff flair; **zero pricing** (Rule 3 = ban) | `posts/03` |
+| **next day** | **r/opensource** (YELLOW) | Promotional flair; reword (no-AI-content rule) | `posts/07` |
+| **next day** | **r/coolgithubprojects** (GREEN) | title tag must match language flair | `posts/08` |
+| **first Wednesday after that** | **r/software** (YELLOW) | **WEDNESDAY ONLY**; OSS-only; missing Rule 3 = permanent ban | `posts/09` |
+| **next Tue–Thu, 8–10am ET** | **Show HN** | after the Reddit wave; clear 4–6 hours; publish `posts/14` (dev.to) beforehand | `posts/04` |
+| **following Tuesday, 12:01am PT** | **Product Hunt** | fold in HN/Reddit quotes | `posts/05` |
+
+*If 1.1.0 is approved before Day 1, run the post-publish checklist in HANDOFF §0 first so the
+posts stop caveating Netscape as export-only.*
 
 **Wave 2 (the following week+), spaced ≥1/day, feedback-first:** r/roastmystartup (roast my pricing), r/alphaandbetausers (test my import/export flow), r/indiehackers ("Show IH"), r/EntrepreneurRideAlong (journey post), r/SaaS (Saturday thread), r/webscraping (monthly pinned thread when it's open). Treat these as feedback/relationship venues, not install channels.
 

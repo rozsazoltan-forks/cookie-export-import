@@ -1,13 +1,75 @@
 # Bokal — Session Handoff / Resume Point
 
-**The single self-contained entry point for the next session.** Last updated: **2026-08-23 — see
-§0 first; the launch was never fired.** (Body sections below still read as of 2026-07-15 unless
+**The single self-contained entry point for the next session.** Last updated: **2026-09-04 — see
+§0 first: v1.1.0 is built and fully verified, awaiting upload; the launch has STILL not been fired.** (Body sections below still read as of 2026-07-15 unless
 §0 supersedes them.) (Note: git history was rewritten on 2026-07-14 — any commit SHA you remember or
 find in older notes from before that date is INVALID. `git log` is authoritative.)
 
 ---
 
-## 0. ⚠ STATE AS OF 2026-08-23 — READ THIS FIRST
+## 0. ⚠ STATE AS OF 2026-09-04 — READ THIS FIRST
+
+### v1.1.0 — BUILT, FULLY VERIFIED, NOT YET UPLOADED (2026-09-04)
+
+Branch **`release/v1.1.0`** (commits `59ff441` feat, `a869c03` release). Scope, as approved: **Netscape
+`cookies.txt` import** (incl. curl's `#HttpOnly_` marker) + **store summary now names Playwright &
+Puppeteer** and says "Import/export JSON & Netscape". Nothing else. No paywall, trial or entitlement
+changes. Written test-first.
+
+**Verification record (all on this branch, 2026-09-04):**
+
+| Layer | Result |
+|---|---|
+| `tsc --noEmit` | clean |
+| Unit (`pnpm -r test`) | **28 files / 146 tests passed** (was 27 / 128) |
+| `build` (publishable) | clean, 342 kB |
+| `check:bundle` | Pro isolated in `ProfilesPanel-*.js`; App chunk clean |
+| Zip manifest | v1.1.0 · summary 130/132 · **no `host_permissions`** · no `tabs` · CSP intact · LICENSE + THIRD-PARTY-NOTICES inside · Netscape parser present in App chunk |
+| E2E vs normal build | 2 passed, 4 skipped (by design) |
+| E2E vs E2E build | **5 passed** — full CRUD on a real site, real ExtPay purchase unlocks Pro + lazy chunk, encrypted profile restore, wrong-passphrase-destroys-nothing |
+
+**The upload artifact:** `apps/cookie-manager/.output/bokalcookie-manager-1.1.0-chrome.zip` (113.9 kB).
+⚠ `.output/chrome-mv3/` currently holds the **E2E build** (host_permissions granted) — never load or
+zip from that directory; the zip above was built from the normal build BEFORE the E2E stage and
+re-verified afterwards.
+
+**To ship (FOUNDER, one dashboard session):** upload the zip AND paste
+`docs/store/DESCRIPTION-paste-v1.1.md` as the description in the same session — that text claims
+Netscape import, which is only true once 1.1.0 is live. Merge `release/v1.1.0` to `main` when you
+upload so `main` == what's in the store.
+
+**POST-PUBLISH CHECKLIST (AGENT, the day 1.1.0 is approved):** every "Netscape is export-only"
+caveat becomes false. Flip all of them — 18 files: `site/editthiscookie-alternative.html`,
+`site/export-cookies-playwright.html`, `site/export-cookies-txt-chrome.html` (2 places, incl. the
+FAQ), `docs/business/posts/01,02,03,04,05,06,07,08,09,10,11,12,13` + `posts/README.md`,
+`docs/store/listing.md`, `docs/store/DESCRIPTION-paste.md` (retire it in favour of the v1.1 file).
+Also update the README's io bullets and redeploy `gh-pages`. Follow-up feature: `toNetscape` still
+does not emit `#HttpOnly_`, so HttpOnly is the one field that does not survive an export→import
+round trip; emitting the marker is the fix (curl/yt-dlp/newer wget all read it).
+
+### Distribution — the actual problem, restated with today's numbers
+
+**Store count: 56 users on 2026-08-26 → 56 users on 2026-09-04. Flat for nine days.** The organic
+store-search curve that carried 13→56 in four days has stopped. It was never going to compound
+forever — store search only surfaces you to people already looking for a cookie editor. Only
+promotion moves the number from here.
+
+**Still 0 GitHub stars → still nothing posted.** (1 fork appeared — someone found the repo.)
+Every dated slot on the posting calendar has now passed: r/chrome_extensions (Aug 26), r/SideProject
+(Aug 27), r/webdev Showoff Saturday (Aug 29), r/opensource (Aug 30), r/coolgithubprojects (Aug 31),
+r/software (Sep 2), **Show HN (Sep 3)**. Product Hunt (Sep 8) is the only one still ahead.
+The calendar in the reddit map has been rewritten as **relative days** — it is no longer re-dated,
+because a calendar nobody executes is not made truer by moving it.
+
+**Price clock:** the old docs pointed at ~2026-09-13 for $29.99→$39. **Deferred** (see below); with
+56 installs and $0 there is no data behind a raise. Nine days out — do nothing.
+
+**Edge:** submitted 2026-07-15, still not in the Edge store as of 2026-09-04, still unverified.
+
+---
+
+### (Previous §0, 2026-08-23 — retained for history)
+
 
 **The launch was never fired.** The kit was written 2026-07-16 and sat untracked on disk for five
 weeks. Verified 2026-08-23: GitHub shows **0 stars / 0 forks / 0 issues**, and there were no commits
