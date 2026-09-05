@@ -11,12 +11,14 @@ find in older notes from before that date is INVALID. `git log` is authoritative
 
 ### v1.1.0 — UPLOADED TO CWS AND SUBMITTED FOR REVIEW (founder, 2026-09-04 ~22:45)
 
-**Status: IN REVIEW.** Public listing still serves 1.0.2 until Google approves (typically 1–3 days;
-the live version stays up throughout). The public listing page is the approval signal — when it
-shows `1.1.0`, run the POST-PUBLISH CHECKLIST below immediately, because 18 files go false that
-moment. Confirm the description was pasted in the same session (`DESCRIPTION-paste-v1.1.md`); if it
-was not, the live description will still say "Netscape cookies.txt is export-only" under a 1.1.0
-summary that says "Import/export JSON & Netscape" — fix in the dashboard, no re-upload needed.
+**Status: IN REVIEW — zip AND description both submitted (founder, 2026-09-04 ~22:45 and ~23:05).**
+The description went in as a second submission a few minutes after the zip (it was initially
+forgotten); `DESCRIPTION-paste-v1.1.md` is what was pasted. Public listing still serves 1.0.2 until
+Google approves (typically 1–3 days; the live version stays up throughout). The public listing page
+is the approval signal — when it shows `1.1.0`, run the POST-PUBLISH CHECKLIST below immediately,
+because 18 files go false that moment. **Gotcha learned:** Chrome forbids extensions from scripting
+any Web Store page ("The extensions gallery cannot be scripted"), so the agent cannot drive the CWS
+dashboard via Claude-in-Chrome; the working pattern is `pbcopy` the text → founder pastes.
 
 
 **MERGED to `main` as `909855f` (2026-09-04)** — branch `release/v1.1.0` deleted. Commits `59ff441`
