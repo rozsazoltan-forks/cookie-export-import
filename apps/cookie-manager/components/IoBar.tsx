@@ -2,9 +2,9 @@ import { useRef, useState } from 'react';
 import { useCookiesStore, cookiesStore } from '../stores/cookies-store';
 import { toJson, toNetscape } from '../lib/io/export';
 import { toPlaywrightStorageState, toPuppeteerJson, toPlaywrightCookies } from '../lib/io/automation';
-import { parseCookiesJson } from '../lib/io/import';
+import { parseImport } from '../lib/io/import';
 import { downloadText } from '../lib/io/download';
-import { toHeaderString, parseHeaderString } from '../lib/io/header';
+import { toHeaderString } from '../lib/io/header';
 import { copyText } from '../lib/clipboard';
 import type { CookieAttrs } from '../lib/cookie-types';
 
@@ -41,15 +41,11 @@ export function IoBar({ cookies, scope }: { cookies: CookieAttrs[]; scope: 'site
     e.target.value = '';
     if (!file) return;
     const text = await file.text();
-    const parsed = parseCookiesJson(text);
-    let toImport = parsed.cookies;
-    let note = '';
-    if (toImport.length === 0) {
-      let domain = 'example.com';
-      try { if (activeUrl) domain = new URL(activeUrl).hostname; } catch { /* keep default */ }
-      toImport = parseHeaderString(text, domain);
-      note = toImport.length ? ' (as header string)' : '';
-    }
+    let domain = 'example.com';
+    try { if (activeUrl) domain = new URL(activeUrl).hostname; } catch { /* keep default */ }
+    const parsed = parseImport(text, domain);
+    const toImport = parsed.cookies;
+    const note = parsed.format === 'header' ? ' (as header string)' : parsed.format === 'netscape' ? ' (Netscape cookies.txt)' : '';
     if (toImport.length === 0) {
       // Distinguish "couldn't parse" from "parsed fine but held no cookies" (e.g. an empty
       // but valid storageState / cookie array) — the latter isn't a failure.
