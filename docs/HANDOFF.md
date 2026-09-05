@@ -11,7 +11,9 @@ find in older notes from before that date is INVALID. `git log` is authoritative
 
 ### v1.1.0 — BUILT, FULLY VERIFIED, NOT YET UPLOADED (2026-09-04)
 
-Branch **`release/v1.1.0`** (commits `59ff441` feat, `a869c03` release). Scope, as approved: **Netscape
+**MERGED to `main` as `909855f` (2026-09-04)** — branch `release/v1.1.0` deleted. Commits `59ff441`
+feat, `a869c03` release, `6832a3f` docs. `main` now == the 1.1.0 build; the store is still on 1.0.2
+until the founder uploads. Scope, as approved: **Netscape
 `cookies.txt` import** (incl. curl's `#HttpOnly_` marker) + **store summary now names Playwright &
 Puppeteer** and says "Import/export JSON & Netscape". Nothing else. No paywall, trial or entitlement
 changes. Written test-first.
@@ -35,8 +37,7 @@ re-verified afterwards.
 
 **To ship (FOUNDER, one dashboard session):** upload the zip AND paste
 `docs/store/DESCRIPTION-paste-v1.1.md` as the description in the same session — that text claims
-Netscape import, which is only true once 1.1.0 is live. Merge `release/v1.1.0` to `main` when you
-upload so `main` == what's in the store.
+Netscape import, which is only true once 1.1.0 is live. (Already merged to `main`.)
 
 **POST-PUBLISH CHECKLIST (AGENT, the day 1.1.0 is approved):** every "Netscape is export-only"
 caveat becomes false. Flip all of them — 18 files: `site/editthiscookie-alternative.html`,
