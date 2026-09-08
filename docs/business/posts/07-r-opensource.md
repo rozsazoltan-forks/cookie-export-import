@@ -6,7 +6,7 @@
 > - **Rule 2: keep self-promo under 10% of your activity**, engage in the comments, and **no AI-generated content** — so read this through and put it in your own words before posting. Do not paste it verbatim.
 > - This community is **touchy about ad-like and open-core framing.** Pro gets exactly one sustainability line, at the bottom, and is never the pitch.
 
-> Verified against source and against Cookie-Editor's published manifest, 2026-08-26. Do NOT claim Edge availability. Do NOT claim Netscape *import* (export only).
+> Verified against source and against Cookie-Editor's published manifest, 2026-08-26. Do NOT claim Edge availability.
 
 ---
 

@@ -2,7 +2,7 @@
 
 > **Gate / notes:** Post from an account with some history. Thread, not a single tweet — the first post carries the hook, the rest carry the proof. Reply to your own thread rather than editing.
 
-> Verified against source 2026-08-26. No Edge claims. Netscape is export-only. Cookie-Editor is also GPL-3.0/MV3 — do not claim those as differentiators.
+> Verified against source 2026-08-26. No Edge claims. Cookie-Editor is also GPL-3.0/MV3 — do not claim those as differentiators.
 
 ---
 
@@ -23,7 +23,7 @@ Bokal is an open-source (GPL-3.0) Manifest V3 cookie manager for Chrome.
 **3/**
 Full cookie CRUD, including HttpOnly cookies UI-only tools can't touch. Search/filter, protect/pin/block rules, whitelist cleanup, CHIPS partitioned-cookie inspector, DevTools panel, dark mode, virtualized lists.
 
-Export: JSON, Netscape, cookie-header, Playwright `storageState`/`addCookies`, Puppeteer `setCookie`. Import: the same minus Netscape.
+Export: JSON, Netscape, cookie-header, Playwright `storageState`/`addCookies`, Puppeteer `setCookie`. Import: the same, Netscape included.
 
 **4/**
 Switching is free — it reads Cookie-Editor / EditThisCookie JSON.

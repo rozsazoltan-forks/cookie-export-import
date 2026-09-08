@@ -1,7 +1,8 @@
 # Bokal — Session Handoff / Resume Point
 
-**The single self-contained entry point for the next session.** Last updated: **2026-09-04 — see
-§0 first: v1.1.0 is built and fully verified, awaiting upload; the launch has STILL not been fired.** (Body sections below still read as of 2026-07-15 unless
+**The single self-contained entry point for the next session.** Last updated: **2026-09-07 — see
+§0 first: v1.1.0 is LIVE on the Chrome Web Store and the post-publish checklist is done; the launch
+has STILL not been fired.** (Body sections below still read as of 2026-07-15 unless
 §0 supersedes them.) (Note: git history was rewritten on 2026-07-14 — any commit SHA you remember or
 find in older notes from before that date is INVALID. `git log` is authoritative.)
 
@@ -11,7 +12,8 @@ find in older notes from before that date is INVALID. `git log` is authoritative
 
 ### v1.1.0 — UPLOADED TO CWS AND SUBMITTED FOR REVIEW (founder, 2026-09-04 ~22:45)
 
-**Status: IN REVIEW — zip AND description both submitted (founder, 2026-09-04 ~22:45 and ~23:05).**
+**Status: ✅ LIVE on the Chrome Web Store as of 2026-09-07 — post-publish checklist DONE by the scheduled task.**
+(Historical: zip AND description both submitted by the founder, 2026-09-04 ~22:45 and ~23:05.)
 The description went in as a second submission a few minutes after the zip (it was initially
 forgotten); `DESCRIPTION-paste-v1.1.md` is what was pasted.
 **⏰ A LOCAL SCHEDULED TASK NOW OWNS THE FOLLOW-UP:** `bokal-v1-1-0-approval-watch`
@@ -57,12 +59,14 @@ re-verified afterwards.
 `docs/store/DESCRIPTION-paste-v1.1.md` as the description in the same session — that text claims
 Netscape import, which is only true once 1.1.0 is live. (Already merged to `main`.)
 
-**POST-PUBLISH CHECKLIST (AGENT, the day 1.1.0 is approved):** every "Netscape is export-only"
+**POST-PUBLISH CHECKLIST — ✅ COMPLETED 2026-09-07 by `bokal-v1-1-0-approval-watch` (task now disabled).**
+All the caveats listed below were flipped, `README.md` + `docs/store/*` updated, `main` pushed and
+`gh-pages` redeployed. Kept here as the record of what was touched. Original text: every "Netscape is export-only"
 caveat becomes false. Flip all of them — 18 files: `site/editthiscookie-alternative.html`,
 `site/export-cookies-playwright.html`, `site/export-cookies-txt-chrome.html` (2 places, incl. the
 FAQ), `docs/business/posts/01,02,03,04,05,06,07,08,09,10,11,12,13` + `posts/README.md`,
 `docs/store/listing.md`, `docs/store/DESCRIPTION-paste.md` (retire it in favour of the v1.1 file).
-Also update the README's io bullets and redeploy `gh-pages`. Follow-up feature: `toNetscape` still
+Also update the README's io bullets and redeploy `gh-pages`. **STILL OPEN — follow-up feature (extension change, founder's call):** `toNetscape` still
 does not emit `#HttpOnly_`, so HttpOnly is the one field that does not survive an export→import
 round trip; emitting the marker is the fix (curl/yt-dlp/newer wget all read it).
 

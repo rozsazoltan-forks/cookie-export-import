@@ -51,8 +51,9 @@ and login states, and privacy-conscious users who want to see and control what s
   oversized cookies inline.
 - **Export** to JSON, Netscape (`cookies.txt`), cookie-header, and test-automation formats
   (Playwright `storageState`, Puppeteer) — no `downloads` permission needed.
-- **Import** from JSON (Cookie-Editor / EditThisCookie compatible), cookie-header strings, and
-  Playwright/Puppeteer files, validated before write.
+- **Import** from JSON (Cookie-Editor / EditThisCookie compatible), Netscape `cookies.txt` (incl.
+  curl's `#HttpOnly_` marker), cookie-header strings, and Playwright/Puppeteer files, validated
+  before write.
 - **CHIPS partition inspector** for modern partitioned cookies.
 - **DevTools panel** — inspect and edit the current tab's cookies inside DevTools.
 - **Dark mode** and virtualized lists that stay fast across thousands of cookies.

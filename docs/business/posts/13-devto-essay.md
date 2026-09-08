@@ -4,7 +4,7 @@
 >
 > This is evergreen, unlike the launch posts — it keeps earning traffic and links long after launch week. It is also the safest asset to reuse: no sub rules, no day gates, no karma thresholds.
 
-> Verified against source 2026-08-26. No Edge claims. Netscape is export-only.
+> Verified against source 2026-08-26. No Edge claims.
 
 ---
 
@@ -32,7 +32,7 @@ Bokal doesn't take that grant. Concretely:
 
 None of this is exotic. It's just declining capabilities a cookie editor doesn't strictly need — and the delisting-plus-copycat story is a good argument for why declining them matters. To be clear about what "minimal" means here: it means *narrow* — one site at a time, nothing at install — not *weak*. Within a site you've granted, Bokal has full read/write over its cookies, because that's the job. That access is inherently sensitive, which is precisely why the build is open and checkable.
 
-The rest is the boring feature work you'd expect: full cookie CRUD including HttpOnly cookies (which UI-only, `document.cookie`-based tools can't touch), search and filtering, export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats (import covers all but Netscape), protect/pin/block rules, a CHIPS partitioned-cookie inspector, a DevTools panel, dark mode. It also reads Cookie-Editor and EditThisCookie JSON, so moving over costs you nothing. And to be fair to the alternatives: Cookie-Editor is free, widely used, GPL-3.0 like Bokal, and has used optional host permissions since 2023 — so neither "open source" nor "no install-time host access" tells the two apart. What does: it requests `tabs` (the "read your browsing history" warning) where Bokal uses `activeTab`, and it has no partitioned-cookie or Playwright/Puppeteer support. That's a narrower case than I'd have liked to make, but it's the true one.
+The rest is the boring feature work you'd expect: full cookie CRUD including HttpOnly cookies (which UI-only, `document.cookie`-based tools can't touch), search and filtering, export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats (import covers all of them, Netscape included), protect/pin/block rules, a CHIPS partitioned-cookie inspector, a DevTools panel, dark mode. It also reads Cookie-Editor and EditThisCookie JSON, so moving over costs you nothing. And to be fair to the alternatives: Cookie-Editor is free, widely used, GPL-3.0 like Bokal, and has used optional host permissions since 2023 — so neither "open source" nor "no install-time host access" tells the two apart. What does: it requests `tabs` (the "read your browsing history" warning) where Bokal uses `activeTab`, and it has no partitioned-cookie or Playwright/Puppeteer support. That's a narrower case than I'd have liked to make, but it's the true one.
 
 ## The honest part about money
 

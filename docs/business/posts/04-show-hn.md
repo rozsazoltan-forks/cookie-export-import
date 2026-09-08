@@ -2,7 +2,7 @@
 
 > **Gate / rules:** Title goes in the HN title field; the body below is the FIRST COMMENT, posted immediately after submitting. Weekday 8-10am ET. Clear 4-6 hours to reply to everything.
 
-> Paste-ready. Verified against source 2026-08-23. Do NOT claim Edge availability. Do NOT claim Netscape *import* (export only).
+> Paste-ready. Verified against source 2026-08-23. Do NOT claim Edge availability.
 
 ---
 
@@ -40,7 +40,7 @@ To be blunt about what this tool is: reading and writing cookies including HttpO
 
 **It's GPL-3.0, Pro included.** Nothing stops you forking Bokal and deleting the license check — I'm not relying on license lock-in, and I'd rather say that than pretend Pro is a locked capability. The honest reason to pay is to fund the work and skip building a cookie-profile system yourself.
 
-**Free (all of it):** full cookie CRUD including HttpOnly, search/filter, protect/pin/block rules, whitelist cleanup, a CHIPS partitioned-cookie inspector, a DevTools panel, dark mode, virtualized lists. **Export:** JSON, Netscape, a cookie-header string, Playwright `storageState`, Playwright `addCookies` array, and Puppeteer `setCookie` array. **Import:** JSON — including Cookie-Editor / EditThisCookie exports, Playwright `storageState`, and Playwright/Puppeteer cookie arrays — plus cookie-header strings, so switching costs nothing. To be exact: **Netscape is export-only** (import doesn't parse `cookies.txt` yet).
+**Free (all of it):** full cookie CRUD including HttpOnly, search/filter, protect/pin/block rules, whitelist cleanup, a CHIPS partitioned-cookie inspector, a DevTools panel, dark mode, virtualized lists. **Export:** JSON, Netscape, a cookie-header string, Playwright `storageState`, Playwright `addCookies` array, and Puppeteer `setCookie` array. **Import:** JSON — including Cookie-Editor / EditThisCookie exports, Playwright `storageState`, and Playwright/Puppeteer cookie arrays — plus cookie-header strings, so switching costs nothing. As of v1.1.0 import also parses Netscape `cookies.txt`, including curl's `#HttpOnly_` marker.
 
 **Being straight about the incumbent, because half of what I first wrote here was wrong.** Cookie-Editor is free, has ~2M users and 4.4★, is **also GPL-3.0** (1.7k GitHub stars), migrated to MV3 back in 2022, and has used `optional_host_permissions` since **August 2023**. So "open source" and "no install-time host permissions" are **not** things that separate Bokal from it. I pulled its `manifest.chrome.json` before writing this and corrected myself; better that than have you do it for me in the comments.
 

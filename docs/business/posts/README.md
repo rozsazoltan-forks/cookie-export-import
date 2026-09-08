@@ -5,7 +5,7 @@ Cookie-Editor's published `manifest.chrome.json`, on 2026-08-26.
 
 **Three rules that apply to all of them:**
 1. **No Edge claims.** Bokal is not in the Edge store; the submission status is unconfirmed.
-2. **Netscape is export-only.** Bokal writes `cookies.txt` but does not parse it.
+2. **Netscape import shipped in v1.1.0.** Bokal both writes and reads `cookies.txt` (import understands curl's `#HttpOnly_` marker).
 3. **Open source / MV3 / optional host permissions are NOT differentiators** — Cookie-Editor has all
    three. The real deltas are `tabs` vs `activeTab`, CHIPS, and Playwright/Puppeteer export.
 

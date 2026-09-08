@@ -2,7 +2,7 @@
 
 > **Gate / rules:** No karma/age/flair gate. Must show a *working* product (Bokal is live on the CWS ✓). No affiliate links ✓. Commercial products are explicitly fine here **if framed as a story, not a sales pitch** — so this post leads with the build and the failure, not the features.
 
-> Written 2026-08-23, numbers refreshed 2026-08-25 (the launch kit had no r/SideProject body). **Re-check the live user count before posting — it is moving.** Verified against source. Do NOT claim Edge availability. Do NOT claim Netscape *import* (export only).
+> Written 2026-08-23, numbers refreshed 2026-08-25 (the launch kit had no r/SideProject body). **Re-check the live user count before posting — it is moving.** Verified against source. Do NOT claim Edge availability.
 
 ---
 
@@ -30,7 +30,7 @@ No `tabs` permission. No host permissions at install. `<all_urls>` exists only a
 - **MV3 service workers dying mid-operation.** Everything stateful had to survive being killed at an arbitrary moment.
 - **CHIPS / partitioned cookies.** The partition key changes what "the same cookie" even means, and most tools quietly ignore it.
 - **Restoring a cookie set *into a live session in place*** — across HttpOnly and partitioned cookies — rather than the export-a-file-then-reimport-it thing. That's the one paid feature, and it was by far the fiddliest code in the project.
-- **Not lying in the copy.** I have a test that asserts a free user makes zero network calls, and another that asserts cookie values are never logged. Writing marketing that stays literally true against the code turned out to be a real engineering constraint, and a good one. (Case in point: I caught myself last week claiming "Netscape import" in a draft of this very post. Bokal exports Netscape; it doesn't import it. Fixed.)
+- **Not lying in the copy.** I have a test that asserts a free user makes zero network calls, and another that asserts cookie values are never logged. Writing marketing that stays literally true against the code turned out to be a real engineering constraint, and a good one. (Case in point: I caught myself claiming "Netscape import" in a draft of this very post back when 1.0.2 was live — Bokal exported Netscape but did not import it. I cut the claim rather than fudge it, and then shipped the feature in 1.1.0.)
 
 **Now the embarrassing part.** It went live on the Chrome Web Store on July 15. I wrote a whole launch kit on July 16 — Show HN draft, subreddit-by-subreddit rules research, Product Hunt copy, the lot.
 

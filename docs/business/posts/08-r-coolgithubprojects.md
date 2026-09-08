@@ -6,7 +6,7 @@
 > - **Lead with the GitHub link, not the store listing, and not pricing.** This sub is a repo-share room.
 > - Keep it short. Long marketing posts do badly here.
 
-> Verified against source and against Cookie-Editor's published manifest, 2026-08-26. Do NOT claim Edge availability. Do NOT claim Netscape *import* (export only).
+> Verified against source and against Cookie-Editor's published manifest, 2026-08-26. Do NOT claim Edge availability.
 
 ---
 

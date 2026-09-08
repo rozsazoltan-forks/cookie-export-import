@@ -6,7 +6,7 @@
 > - **Secret automod karma threshold.** If the post vanishes silently it was automod, not a mod decision. **Modmail politely for manual approval — do not repost.**
 > - Flair: "Releases" (or the closest equivalent the sub offers).
 
-> Verified against source and against Cookie-Editor's published manifest, 2026-08-26. Do NOT claim Edge availability. Do NOT claim Netscape *import* (export only).
+> Verified against source and against Cookie-Editor's published manifest, 2026-08-26. Do NOT claim Edge availability.
 
 ---
 
@@ -33,7 +33,7 @@ That left a lot of people needing a replacement for a category of tool where "ca
 - A CHIPS partitioned-cookie inspector
 - A DevTools panel, dark mode, and virtualized lists that stay fast across thousands of cookies
 - **Export** to JSON, Netscape `cookies.txt`, cookie-header string, Playwright `storageState`, Playwright `addCookies` and Puppeteer `setCookie`
-- **Import** from JSON — including Cookie-Editor and EditThisCookie exports — and from header strings. *(Netscape is export-only; it does not import `cookies.txt`.)*
+- **Import** from JSON — including Cookie-Editor and EditThisCookie exports — from header strings, and from Netscape `cookies.txt` (incl. curl's `#HttpOnly_` marker).
 
 **The design decision worth mentioning here** is the permission model, since that's what the whole thing was a reaction to. The full published manifest:
 

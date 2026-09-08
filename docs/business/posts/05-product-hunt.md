@@ -2,7 +2,7 @@
 
 > **Gate / rules:** Launch at 12:01am PT. Fold in any quotes/feedback earned on HN and Reddit first.
 
-> Paste-ready. Verified against source 2026-08-23. Do NOT claim Edge availability. Do NOT claim Netscape *import* (export only).
+> Paste-ready. Verified against source 2026-08-23. Do NOT claim Edge availability.
 
 ---
 
@@ -14,7 +14,7 @@
 - Cookie manager that keeps your cookies on your device (54)
 
 ### Short description
-Bokal is an open-source (GPL-3.0) Manifest V3 cookie manager for Chrome. Full cookie CRUD including HttpOnly, search/filter, protect/pin/block rules, and export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats (import covers all of those except Netscape) — plus a CHIPS partitioned-cookie inspector and a DevTools panel. No `<all_urls>` at install, no "tabs" permission, no telemetry, no remote code. Free users make zero network calls and your cookie data never leaves your device. Everything's free; the one paid feature (Bokal Pro, $29.99 one-time) adds named local cookie profiles with optional passphrase (AES-GCM) encryption.
+Bokal is an open-source (GPL-3.0) Manifest V3 cookie manager for Chrome. Full cookie CRUD including HttpOnly, search/filter, protect/pin/block rules, and export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats (import covers all of those, Netscape included) — plus a CHIPS partitioned-cookie inspector and a DevTools panel. No `<all_urls>` at install, no "tabs" permission, no telemetry, no remote code. Free users make zero network calls and your cookie data never leaves your device. Everything's free; the one paid feature (Bokal Pro, $29.99 one-time) adds named local cookie profiles with optional passphrase (AES-GCM) encryption.
 
 ### First maker comment (founder voice)
 
@@ -33,7 +33,7 @@ Bokal is an open-source (GPL-3.0) Manifest V3 cookie manager for Chrome. Full co
 > **Free (all of it):**
 > - Full cookie CRUD including **HttpOnly** cookies (UI-only tools can't touch those)
 > - Search/filter, protect/pin/block rules, whitelist cleanup
-> - Export: JSON, Netscape, cookie-header, Playwright `storageState`/`addCookies`, Puppeteer `setCookie` · Import: all of those except Netscape
+> - Export: JSON, Netscape, cookie-header, Playwright `storageState`/`addCookies`, Puppeteer `setCookie` · Import: all of those, Netscape included
 > - CHIPS partitioned-cookie inspector, DevTools panel, dark mode, virtualized lists
 > - Reads Cookie-Editor / EditThisCookie JSON — switching costs nothing
 >

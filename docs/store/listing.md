@@ -30,10 +30,10 @@ still reads **"Bokal - Cookie Editor & Manager"**, capturing the two highest-int
 while the trust tail shows on the detail page. **Do NOT** put "EditThisCookie" or
 "Cookie-Editor" in the title/summary (impersonation/trademark = suspension risk).
 
-## SUMMARY (126 / 132 chars — plain text, real search terms, no stuffing)
+## SUMMARY (130 / 132 chars — plain text, real search terms, no stuffing)
 
 ```
-Edit, add, view & delete cookies incl. HttpOnly. JSON/Netscape export, JSON import, CHIPS inspector. Open source, no tracking.
+View, edit, add & delete cookies incl. HttpOnly. Import/export JSON & Netscape, export to Playwright & Puppeteer. CHIPS inspector.
 ```
 
 ## DESCRIPTION (paste-ready)
@@ -74,8 +74,9 @@ FEATURES
   "downloads" permission needed.
 • Export for test automation: Playwright storageState, Playwright addCookies,
   and Puppeteer setCookie — log in once by hand, reuse the session in your tests.
-• Import from JSON (Cookie-Editor / EditThisCookie compatible), cookie-header
-  strings, and Playwright/Puppeteer files. (Netscape cookies.txt is export-only.)
+• Import from JSON (Cookie-Editor / EditThisCookie compatible), Netscape
+  cookies.txt (including curl's #HttpOnly_ marker), cookie-header strings, and
+  Playwright/Puppeteer files.
 • CHIPS partition inspector for modern partitioned cookies.
 • DevTools panel: inspect and edit the current tab's cookies inside DevTools.
 • Dark mode and fast, virtualized lists across thousands of cookies.
@@ -170,17 +171,17 @@ side panel as a lone page with no tab to bind to. Fixed 2026-07-14.)*
 ## TITLE / SUMMARY — SHIPPED in the 1.1.0 build (2026-09-04)
 
 Both fields live in `apps/cookie-manager/wxt.config.ts` and reach the store through the uploaded
-package. The 1.1.0 zip carries the summary below; it goes live when that zip is approved. The title
+package. The 1.1.0 zip carried the summary below and went live on 2026-09-07. The title
 is unchanged (it already truncates to "Bokal - Cookie Editor & Manager" in search results).
 
-### Current (live, v1.0.2)
+### Previous (v1.0.2, retired 2026-09-07)
 
 ```
 TITLE   (58/75) : Bokal - Cookie Editor & Manager (Open Source, No Tracking)
 SUMMARY (126/132): Edit, add, view & delete cookies incl. HttpOnly. JSON/Netscape export, JSON import, CHIPS inspector. Open source, no tracking.
 ```
 
-### In the 1.1.0 zip (pending upload)
+### Current (live, v1.1.0 — approved 2026-09-07)
 
 ```
 TITLE   (58/75) : Bokal - Cookie Editor & Manager (Open Source, No Tracking)

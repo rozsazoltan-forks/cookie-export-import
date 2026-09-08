@@ -1,20 +1,19 @@
-# CWS detailed description — PASTE THIS
+# CWS detailed description — LIVE (v1.1.0)
 
-> **Dashboard-editable. No version bump, no re-review of the package.**
-> Chrome Web Store dashboard → your item → Store listing → **Description**. Replace the whole field
-> with everything below the line, then Save draft → Submit for review (listing-only review is fast).
->
-> Revised 2026-08-26. Every claim verified against the shipped v1.0.2 source.
-> Do NOT add "EditThisCookie" or "Cookie-Editor" to the TITLE or SUMMARY fields — those come from
-> the manifest anyway, and competitor names there risk suspension.
+> **This is the description currently live on the Chrome Web Store.** v1.1.0 was approved on
+> 2026-09-07 and this text (identical to `DESCRIPTION-paste-v1.1.md`) is what is published.
+> The former 1.0.2 text that used to live in this file is retired — it claimed Netscape was
+> export-only, which stopped being true with 1.1.0.
+> Do NOT add "EditThisCookie" or "Cookie-Editor" to the TITLE or SUMMARY fields.
 
 ---
 
 Bokal is an open-source cookie editor and cookie manager for developers, QA
 engineers, and privacy-minded users. View, edit, add, and delete cookies —
 including HttpOnly cookies that UI-only tools cannot touch — search and filter
-them, inspect CHIPS partitioned cookies, and export a logged-in session straight
-to Playwright storageState or Puppeteer setCookie for your test suite.
+them, inspect CHIPS partitioned cookies, import or export Netscape cookies.txt,
+and export a logged-in session straight to Playwright storageState or Puppeteer
+setCookie for your test suite.
 
 Free and open source (GPL-3.0), with no account, no telemetry, and no site
 access requested at install.
@@ -45,8 +44,9 @@ FEATURES
   "downloads" permission needed.
 • Export for test automation: Playwright storageState, Playwright addCookies,
   and Puppeteer setCookie — log in once by hand, reuse the session in your tests.
-• Import from JSON (Cookie-Editor / EditThisCookie compatible), cookie-header
-  strings, and Playwright/Puppeteer files. (Netscape cookies.txt is export-only.)
+• Import from JSON (Cookie-Editor / EditThisCookie compatible), Netscape
+  cookies.txt (including curl's #HttpOnly_ marker), cookie-header strings, and
+  Playwright/Puppeteer files.
 • CHIPS partition inspector for modern partitioned cookies.
 • DevTools panel: inspect and edit the current tab's cookies inside DevTools.
 • Dark mode and fast, virtualized lists across thousands of cookies.

@@ -2,7 +2,7 @@
 
 > **Gate / rules:** Use the Showoff Saturday flair. Rule 3: commercial promotion = ban. MENTION NO PRICING AT ALL in this one — the body below has already had it stripped; keep it that way in comments too.
 
-> Paste-ready. Verified against source 2026-08-23. Do NOT claim Edge availability. Do NOT claim Netscape *import* (export only).
+> Paste-ready. Verified against source 2026-08-23. Do NOT claim Edge availability.
 
 ---
 
@@ -15,7 +15,7 @@ I'm the maker of Bokal, a cookie manager for Chrome. Posting here because most o
 **What it does (all free):**
 - Full cookie CRUD, **including HttpOnly cookies**, via the extension cookies API — not just what `document.cookie` can read
 - Search/filter across cookies
-- Export to JSON, Netscape, a cookie-header string, Playwright `storageState`, Playwright `addCookies`, and Puppeteer `setCookie`; import back from JSON (incl. Cookie-Editor/EditThisCookie and Playwright/Puppeteer arrays) or a header string — handy for moving a logged-in session into an automated test. Netscape is export-only.
+- Export to JSON, Netscape, a cookie-header string, Playwright `storageState`, Playwright `addCookies`, and Puppeteer `setCookie`; import back from JSON (incl. Cookie-Editor/EditThisCookie and Playwright/Puppeteer arrays) or a header string — handy for moving a logged-in session into an automated test.
 - Reads Cookie-Editor / EditThisCookie JSON, so switching costs nothing
 - Protect/pin/block rules, whitelist cleanup, a CHIPS partitioned-cookie inspector, a DevTools panel, dark mode, virtualized lists for big cookie stores
 

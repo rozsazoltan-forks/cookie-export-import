@@ -2,7 +2,7 @@
 
 > **Gate / rules:** Automation/test-account angle. Pro is relevant here (juggling test-account sessions) but keep it a disclosed footnote, not the lead.
 
-> Paste-ready. Verified against source 2026-08-23. Do NOT claim Edge availability. Do NOT claim Netscape *import* (export only).
+> Paste-ready. Verified against source 2026-08-23. Do NOT claim Edge availability.
 
 ---
 

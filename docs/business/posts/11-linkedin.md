@@ -2,7 +2,7 @@
 
 > **Gate / notes:** Longer-form and less technical than the X thread. LinkedIn suppresses posts with outbound links in the body — consider putting the store link in the first comment instead.
 
-> Verified against source 2026-08-26. No Edge claims. Netscape is export-only. Cookie-Editor is also GPL-3.0/MV3 — do not claim those as differentiators.
+> Verified against source 2026-08-26. No Edge claims. Cookie-Editor is also GPL-3.0/MV3 — do not claim those as differentiators.
 
 ---
 
@@ -15,7 +15,7 @@ How it's built:
 • No telemetry, no analytics, no ads, no remote code — everything is bundled (CSP `script-src 'self'`).
 • Local-first: no server, no account. Free users make zero network calls, and your cookie data never leaves your device.
 
-What it does: full cookie CRUD including HttpOnly cookies (which UI-only tools can't edit), search/filter, protect/pin/block rules, whitelist cleanup, a CHIPS partitioned-cookie inspector, a DevTools panel, and export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats (import covers all but Netscape). It also reads Cookie-Editor and EditThisCookie JSON, so switching costs nothing.
+What it does: full cookie CRUD including HttpOnly cookies (which UI-only tools can't edit), search/filter, protect/pin/block rules, whitelist cleanup, a CHIPS partitioned-cookie inspector, a DevTools panel, and export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats (import covers all of them, Netscape included). It also reads Cookie-Editor and EditThisCookie JSON, so switching costs nothing.
 
 Everything above is free. The only paid tier, Bokal Pro, adds named local cookie profiles — snapshot a site's cookies and restore a saved set into the live session in one click (like different test accounts), with optional AES-GCM passphrase encryption, stored locally in IndexedDB. It's $4.99/mo, $19.99/yr, or $29.99 one-time.
 
