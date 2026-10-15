@@ -1,6 +1,6 @@
 import 'fake-indexeddb/auto';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, cleanup, waitFor } from '@testing-library/react';
+import { render, cleanup, waitFor, fireEvent } from '@testing-library/react';
 
 vi.hoisted(() => {
   (globalThis as unknown as { chrome: unknown }).chrome = {
@@ -45,6 +45,27 @@ describe('ProfilesPanel', () => {
     await waitFor(() => q.getByText('admin'));
     expect((q.getByRole('button', { name: /^apply$/i }) as HTMLButtonElement).disabled).toBe(false);
     expect(q.getByRole('button', { name: '✕' })).toBeTruthy();
+  });
+
+  // A lapsed Pro user can hold more than the allowance; "1 of 1 free" beside three rows would lie.
+  it('above the limit, counts what is saved rather than capping the number', async () => {
+    for (const id of ['a', 'b', 'c']) await putProfile({ id, name: id, createdAt: 1, encrypted: false, cookies: [] });
+    const q = render(<ProfilesPanel limit={1} />);
+    await waitFor(() => expect(q.container.textContent).toContain('3 saved · 1 free'));
+    expect(q.container.textContent).not.toContain('1 of 1 free');
+  });
+
+  it('keeps what the user typed when a save is refused', async () => {
+    await putProfile({ id: 'a', name: 'admin', createdAt: 1, encrypted: false, cookies: [] });
+    const saveSpy = vi.spyOn(profilesStore.getState(), 'save').mockResolvedValue(false);
+    const q = render(<ProfilesPanel />);
+    await waitFor(() => q.getByText('admin'));
+    const input = q.getByPlaceholderText('Profile name') as HTMLInputElement;
+    fireEvent.change(input, { target: { value: 'test-user-2' } });
+    fireEvent.click(saveButton(q));
+    await waitFor(() => expect(saveSpy).toHaveBeenCalled());
+    expect(input.value).toBe('test-user-2');
+    saveSpy.mockRestore();
   });
 
   it('has no limit and no counter for Pro', async () => {

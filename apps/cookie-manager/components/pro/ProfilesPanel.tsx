@@ -22,7 +22,8 @@ export function ProfilesPanel({ limit }: { limit?: number } = {}) {
   async function onSave() {
     setNotice(null);
     if (!name.trim()) return;
-    await profilesStore.getState().save(name.trim(), encrypt ? pass : undefined);
+    // Keep what was typed if the save is refused, so the user can act on the message and retry.
+    if (!(await profilesStore.getState().save(name.trim(), encrypt ? pass : undefined))) return;
     setName('');
     setPass('');
   }
@@ -43,7 +44,7 @@ export function ProfilesPanel({ limit }: { limit?: number } = {}) {
         Cookie profiles
         {limit !== undefined && (
           <span style={{ fontWeight: 400, fontSize: 11, color: 'var(--bokal-muted)', marginLeft: 6 }}>
-            {Math.min(profiles.length, limit)} of {limit} free
+            {profiles.length <= limit ? `${profiles.length} of ${limit} free` : `${profiles.length} saved · ${limit} free`}
           </span>
         )}
       </div>

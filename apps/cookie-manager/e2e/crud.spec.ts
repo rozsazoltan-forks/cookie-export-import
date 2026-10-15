@@ -106,4 +106,8 @@ test('full cookie CRUD through the real UI, against a real site', async ({ conte
 
   // ---- PRIVACY: a free user made zero requests to the billing server ----
   expect(extpayHits, `free user contacted extensionpay.com: ${extpayHits.join(', ')}`).toEqual([]);
+  // No ExtPay instance was ever constructed: constructing one writes an install marker to
+  // storage.sync even when no request is made, which the page-level tripwire above cannot see.
+  const [swCheck] = context.serviceWorkers();
+  expect(await swCheck!.evaluate(() => chrome.storage.sync.get(null))).toEqual({});
 });

@@ -64,6 +64,9 @@ test('Pro: the real purchase flow unlocks Pro and lazily loads the Pro chunk', a
   await mockExtPay(context, billing);
 
   const panel = await context.newPage();
+  // Resource Timing never lists extension modules, but Playwright's request events do.
+  const profilesChunkFetches: string[] = [];
+  panel.on('request', (r) => { if (r.url().includes('/chunks/ProfilesPanel-')) profilesChunkFetches.push(r.url()); });
   await panel.goto(`chrome-extension://${extensionId}/sidepanel.html`);
 
   // Free state: the Profiles section explains the feature and shows the price before any click,
@@ -71,6 +74,7 @@ test('Pro: the real purchase flow unlocks Pro and lazily loads the Pro chunk', a
   await expect(panel.getByRole('button', { name: /unlock pro/i })).toBeVisible({ timeout: 15_000 });
   await expect(panel.locator('#profiles')).toContainText('$29.99 once');
   await expect(panel.getByPlaceholder('Profile name')).toHaveCount(0);
+  expect(profilesChunkFetches, 'profiles chunk fetched before purchase').toEqual([]);
 
   // The user clicks Unlock Pro → engagement is recorded, a key is minted, checkout opens, polling starts.
   await panel.getByRole('button', { name: /unlock pro/i }).click();
@@ -83,6 +87,7 @@ test('Pro: the real purchase flow unlocks Pro and lazily loads the Pro chunk', a
   await expect(panel.getByPlaceholder('Profile name')).toBeVisible({ timeout: 25_000 });
   await expect(panel.getByText(/of 1 free/)).toHaveCount(0);
   await expect(panel.getByRole('button', { name: /unlock pro/i })).toHaveCount(0);
+  expect(profilesChunkFetches).toHaveLength(1);
 });
 
 test('Pro: encrypted profile snapshots and restores cookies; a wrong passphrase destroys nothing', async ({
@@ -164,13 +169,20 @@ test('Free: one profile, saved and restored, with zero billing contact; the seco
     sw!.evaluate(async (url) => (await chrome.cookies.getAll({ url })).map((c) => c.name), ORIGIN);
 
   const panel = await context.newPage();
+  // Resource Timing never lists extension modules, but Playwright's request events do.
+  const profilesChunkFetches: string[] = [];
+  panel.on('request', (r) => { if (r.url().includes('/chunks/ProfilesPanel-')) profilesChunkFetches.push(r.url()); });
   await panel.goto(`chrome-extension://${extensionId}/sidepanel.html`);
   await site.bringToFront();
   await expect(panel.getByText('e2e_session')).toBeVisible({ timeout: 15_000 });
 
+  // Until the user opens Profiles, the profiles code (IndexedDB, Web Crypto) is not even fetched.
+  expect(profilesChunkFetches, 'profiles chunk fetched before the user opened Profiles').toEqual([]);
+
   // The header chip opens Profiles in place — it no longer jumps straight to a checkout page.
   await panel.getByRole('button', { name: '★ Pro' }).click();
   await expect(panel.getByText('0 of 1 free')).toBeVisible();
+  expect(profilesChunkFetches).toHaveLength(1);
 
   // Save the free profile (unencrypted path; the encrypted path is covered above).
   await panel.getByPlaceholder('Profile name').fill('admin');
@@ -200,4 +212,6 @@ test('Free: one profile, saved and restored, with zero billing contact; the seco
   expect(extpayHits, `free profile flow contacted extensionpay.com: ${extpayHits.join(', ')}`).toEqual([]);
   const engaged = await sw!.evaluate(async () => (await chrome.storage.local.get('bokal:proEngaged'))['bokal:proEngaged']);
   expect(engaged).toBeUndefined();
+  // …and no ExtPay instance was constructed (that writes to storage.sync without any request).
+  expect(await sw!.evaluate(() => chrome.storage.sync.get(null))).toEqual({});
 });

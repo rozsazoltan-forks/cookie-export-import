@@ -29,11 +29,27 @@ public evidence that anyone wants cookie profiles (0 of 184 issues in Cookie-Edi
 - The profiles chunk still loads lazily: for Pro users, or once a free user opens Profiles. Free users
   still make zero network calls — asserted by a new E2E.
 
-**Verified 2026-10-14:** tsc clean · 33 files / 168 unit tests · build + `check:bundle` · zip
-(`apps/cookie-manager/.output/bokalcookie-manager-1.2.0-chrome.zip`, 114.5 kB): v1.2.0, no
-`host_permissions`, no `tabs`, licences inside · E2E store build 2 passed / 5 skipped · E2E test
-build **6 passed** incl. the free-tier spec (save, limit, restore, reopen, no extensionpay.com
-request, no engagement flag).
+- **A profile now captures the active site's cookies, partitioned (CHIPS) ones included** — read
+  fresh from the browser, not from the list on screen. Before, partitioned cookies were saved only if
+  "Show partitioned" happened to be ticked, and the All-cookies view saved the whole browser.
+- The free limit is checked and written in ONE IndexedDB read-write transaction (`insertProfile`), so
+  the side panel and DevTools panel saving at once cannot both get in.
+
+**Independent review (2026-10-14):** none of the four invariants broken (zero network/sync writes for
+free users, bundle split, decrypt-before-remove, no value logging). One Important (the CHIPS claim
+above) and five Minor findings — all fixed, each with a test: CHIPS/site scope, the cross-panel race,
+stale list after a refusal, lapsed-Pro users seeing the teaser instead of their profiles, typed input
+cleared on refusal, store text "only if you buy Pro" (billing actually starts at the Unlock/Restore
+click). The E2E chunk check was mutation-tested: forcing eager loading makes both Pro specs fail.
+**Gotcha:** Resource Timing never lists extension modules — detect lazy chunks with Playwright request
+events instead.
+
+**Verified 2026-10-14 (after review fixes):** tsc clean · **33 files / 178 unit tests** · build +
+`check:bundle` · zip (`apps/cookie-manager/.output/bokalcookie-manager-1.2.0-chrome.zip`, 114.8 kB,
+sha256 `c708fc62c3c71e75…`): v1.2.0, no `host_permissions`, no `tabs`, licences inside · E2E store
+build 2 passed / 5 skipped · E2E test build **6 passed** incl. the free-tier spec (save, limit,
+restore, reopen, profiles chunk not fetched before opening, no extensionpay.com request, no
+engagement flag, storage.sync untouched).
 
 **THE DECISION RULE (agreed with the founder before shipping):** if the **next 300 installs after
 1.2.0 goes live** produce **no sale**, cookie profiles are not worth charging for (0 of 300 rejects a

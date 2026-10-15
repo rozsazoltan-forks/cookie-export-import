@@ -32,7 +32,7 @@ Trust is the whole point of Bokal:
 • No telemetry, no analytics, no ads, no tracking of any kind.
 • Local-first — your cookies never leave your device: no Bokal server, no cloud,
   no account. (The only network activity is the optional Pro license check via
-  ExtensionPay/Stripe, and only if you buy Pro.)
+  ExtensionPay/Stripe, and only after you click Unlock Pro or Restore purchase.)
 • Open source — every line is published so you (or anyone) can verify these
   claims for yourself.
 
@@ -71,8 +71,9 @@ PERMISSIONS, IN PLAIN ENGLISH
 • unlimitedStorage — lets your cookie-profile library grow past the default quota;
   everything stays on your device.
 • alarms — schedules two periodic tasks: a re-check of your Pro license (which contacts
-  ExtensionPay to verify your license, and only if you've bought Pro — free users make no such
-  request), and the optional daily cookie-cleanup sweep (fully local). No cookies or browsing
+  ExtensionPay to verify your license, and only once you have clicked Unlock Pro or Restore
+  purchase — free users who never do make no such request), and the optional daily
+  cookie-cleanup sweep (fully local). No cookies or browsing
   data are ever sent.
 • activeTab — reads the current tab's address (only when you open Bokal) so it
   can request access to just that one site. Not the "tabs" permission.

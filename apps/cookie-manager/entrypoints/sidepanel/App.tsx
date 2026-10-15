@@ -86,6 +86,12 @@ export function App() {
     };
   }, []);
 
+  // A Pro user never sees the Open profiles button, so record "open" for them too: if the licence
+  // lapses, their saved profiles appear instead of the teaser.
+  useEffect(() => {
+    if (entitled) void setProfilesOpen();
+  }, [entitled]);
+
   // The profiles chunk (IndexedDB, Web Crypto) loads for Pro, or once a free user opens Profiles.
   useEffect(() => {
     if ((entitled || profilesOpen) && !Pro) {
