@@ -8,6 +8,8 @@ import { cookieUrl } from '../lib/cookies/keys';
 import { getCookiesForUrl } from '../lib/cookies/read';
 import { loadRules, isProtected } from '../lib/rules/rules';
 import { cookiesStore } from './cookies-store';
+import { entitlementStore } from './entitlement-store';
+import { canSaveProfile, FREE_PROFILE_LIMIT } from '../lib/pay/plan';
 import type { CookieAttrs } from '../lib/cookie-types';
 
 interface ProfilesState {
@@ -43,6 +45,13 @@ export const profilesStore = createStore<ProfilesState>((set, get) => ({
   save: async (name, passphrase) => {
     set({ busy: true, error: null });
     try {
+      // The free allowance is enforced here, where profiles are written, not just in the panel.
+      // Count what is stored — the in-memory list may not have been loaded yet.
+      const stored = await getAllProfiles();
+      if (!canSaveProfile(stored.length, entitlementStore.getState().entitled)) {
+        set({ error: `Free includes ${FREE_PROFILE_LIMIT} profile. Unlock Pro to save more and switch between them.` });
+        return;
+      }
       const { cookies, activeUrl } = cookiesStore.getState();
       const base: Profile = {
         id: crypto.randomUUID(),

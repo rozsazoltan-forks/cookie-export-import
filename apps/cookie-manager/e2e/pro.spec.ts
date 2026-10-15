@@ -11,7 +11,8 @@ import { createServer, type Server } from 'node:http';
 // integration end-to-end without needing a registered ExtPay app or a real card.
 //
 // It also pins down two invariants that only a real browser run can show:
-//   1. The Pro chunk is genuinely lazy — it is fetched ONLY once the user becomes entitled.
+//   1. The profiles chunk is genuinely lazy — fetched only once the user is entitled or opens
+//      Profiles (1.2.0 gives free users one profile).
 //   2. A WRONG PASSPHRASE CANNOT DESTROY COOKIES. apply() decrypts before it removes anything, so a
 //      failed decrypt must leave the cookie jar untouched (the invariant behind the M9 Critical).
 
@@ -65,19 +66,22 @@ test('Pro: the real purchase flow unlocks Pro and lazily loads the Pro chunk', a
   const panel = await context.newPage();
   await panel.goto(`chrome-extension://${extensionId}/sidepanel.html`);
 
-  // Free state: the upsell is shown (header chip + full section) and the Pro panel is NOT in the
-  // DOM (chunk never fetched). Two controls match /unlock pro/i, so scope with .first().
-  await expect(panel.getByRole('button', { name: /unlock pro/i }).first()).toBeVisible({ timeout: 15_000 });
-  await expect(panel.getByText('Cookie profiles (Pro)')).toHaveCount(0);
+  // Free state: the Profiles section explains the feature and shows the price before any click,
+  // and the profiles panel is NOT in the DOM (chunk not fetched until the user opens it).
+  await expect(panel.getByRole('button', { name: /unlock pro/i })).toBeVisible({ timeout: 15_000 });
+  await expect(panel.locator('#profiles')).toContainText('$29.99 once');
+  await expect(panel.getByPlaceholder('Profile name')).toHaveCount(0);
 
   // The user clicks Unlock Pro → engagement is recorded, a key is minted, checkout opens, polling starts.
-  await panel.getByRole('button', { name: /unlock pro/i }).first().click();
+  await panel.getByRole('button', { name: /unlock pro/i }).click();
 
   // …the purchase completes on the (mocked) payment page.
   billing.paid = true;
 
-  // The bounded poll must notice and unlock without the user reopening the panel.
-  await expect(panel.getByText('Cookie profiles (Pro)')).toBeVisible({ timeout: 25_000 });
+  // The bounded poll must notice and unlock without the user reopening the panel — the unlimited
+  // panel (no free counter) replaces the Profiles section.
+  await expect(panel.getByPlaceholder('Profile name')).toBeVisible({ timeout: 25_000 });
+  await expect(panel.getByText(/of 1 free/)).toHaveCount(0);
   await expect(panel.getByRole('button', { name: /unlock pro/i })).toHaveCount(0);
 });
 
@@ -105,7 +109,7 @@ test('Pro: encrypted profile snapshots and restores cookies; a wrong passphrase 
   await panel.goto(`chrome-extension://${extensionId}/sidepanel.html`);
   await site.bringToFront();
 
-  await expect(panel.getByText('Cookie profiles (Pro)')).toBeVisible({ timeout: 15_000 });
+  await expect(panel.getByPlaceholder('Profile name')).toBeVisible({ timeout: 15_000 });
   await expect(panel.getByText('e2e_session')).toBeVisible();
 
   // ---- SNAPSHOT: save the site's cookies as an encrypted profile ----
@@ -139,4 +143,61 @@ test('Pro: encrypted profile snapshots and restores cookies; a wrong passphrase 
 
   // Restored from the encrypted blob.
   await expect.poll(names, { timeout: 10_000 }).toContain('e2e_session');
+});
+
+test('Free: one profile, saved and restored, with zero billing contact; the second is the upgrade', async ({
+  context,
+  extensionId,
+}) => {
+  test.skip(!process.env.BOKAL_E2E, 'needs the granted build (build:e2e + BOKAL_E2E=1)');
+
+  // Same page-level tripwire as crud.spec (see its caveat about service-worker fetches).
+  const extpayHits: string[] = [];
+  context.on('request', (r) => {
+    if (r.url().includes('extensionpay.com')) extpayHits.push(r.url());
+  });
+
+  const site = await context.newPage();
+  await site.goto(ORIGIN);
+  const [sw] = context.serviceWorkers();
+  const names = async (): Promise<string[]> =>
+    sw!.evaluate(async (url) => (await chrome.cookies.getAll({ url })).map((c) => c.name), ORIGIN);
+
+  const panel = await context.newPage();
+  await panel.goto(`chrome-extension://${extensionId}/sidepanel.html`);
+  await site.bringToFront();
+  await expect(panel.getByText('e2e_session')).toBeVisible({ timeout: 15_000 });
+
+  // The header chip opens Profiles in place — it no longer jumps straight to a checkout page.
+  await panel.getByRole('button', { name: '★ Pro' }).click();
+  await expect(panel.getByText('0 of 1 free')).toBeVisible();
+
+  // Save the free profile (unencrypted path; the encrypted path is covered above).
+  await panel.getByPlaceholder('Profile name').fill('admin');
+  await panel.getByRole('button', { name: /save current cookies/i }).click();
+  const row = panel.locator('li').filter({ hasText: 'admin' });
+  await expect(row).toBeVisible();
+  await expect(panel.getByText('1 of 1 free')).toBeVisible();
+
+  // The second profile is the upgrade moment: saving is disabled, with the reason on screen.
+  await panel.getByPlaceholder('Profile name').fill('test-user-2');
+  await expect(panel.getByRole('button', { name: /save current cookies/i })).toBeDisabled();
+  await expect(panel.getByText(/Free includes 1 profile/)).toBeVisible();
+
+  // The free profile really restores: delete the cookie, apply, and it is back.
+  await sw!.evaluate(async (url) => { await chrome.cookies.remove({ url, name: 'e2e_session' }); }, ORIGIN);
+  expect(await names()).not.toContain('e2e_session');
+  await row.getByRole('button', { name: /^apply$/i }).click();
+  await expect.poll(names, { timeout: 10_000 }).toContain('e2e_session');
+
+  // Reopening the panel shows the saved profile without another click.
+  const again = await context.newPage();
+  await again.goto(`chrome-extension://${extensionId}/sidepanel.html`);
+  await site.bringToFront();
+  await expect(again.locator('li').filter({ hasText: 'admin' })).toBeVisible({ timeout: 15_000 });
+
+  // PRIVACY: using the free profile never contacted billing, and never marked the user as engaged.
+  expect(extpayHits, `free profile flow contacted extensionpay.com: ${extpayHits.join(', ')}`).toEqual([]);
+  const engaged = await sw!.evaluate(async () => (await chrome.storage.local.get('bokal:proEngaged'))['bokal:proEngaged']);
+  expect(engaged).toBeUndefined();
 });

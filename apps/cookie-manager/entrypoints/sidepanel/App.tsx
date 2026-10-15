@@ -8,7 +8,7 @@ import { IoBar } from '../../components/IoBar';
 import { BlockRules } from '../../components/BlockRules';
 import { CleanupRules } from '../../components/CleanupRules';
 import { ThemeToggle } from '../../components/ThemeToggle';
-import { UpgradeButton } from '../../components/UpgradeButton';
+import { ProfilesSection } from '../../components/ProfilesSection';
 import { ManageBilling } from '../../components/ManageBilling';
 import { useCookiesStore, cookiesStore, hydrateFromStorage } from '../../stores/cookies-store';
 import { useEntitlement, entitlementStore } from '../../stores/entitlement-store';
@@ -16,6 +16,8 @@ import { useRules, rulesStore } from '../../stores/rules-store';
 import { onPermissionsChanged } from '../../lib/permissions';
 import { SOFT_DOMAIN_COOKIE_WARN } from '../../lib/cookies/validation';
 import { shouldPromptReview, dismissReviewPrompt, reviewUrl } from '../../lib/review';
+import { FREE_PROFILE_LIMIT } from '../../lib/pay/plan';
+import { getProfilesOpen, setProfilesOpen } from '../../lib/profiles-pref';
 import type { CookieAttrs } from '../../lib/cookie-types';
 
 export function App() {
@@ -30,7 +32,8 @@ export function App() {
   const [editing, setEditing] = useState<{ draft: CookieAttrs; original: CookieAttrs | null } | null>(null);
   const entitled = useEntitlement((s) => s.entitled);
   const rules = useRules((s) => s.rules);
-  const [Pro, setPro] = useState<ComponentType | null>(null);
+  const [Pro, setPro] = useState<ComponentType<{ limit?: number }> | null>(null);
+  const [profilesOpen, setProfilesOpenState] = useState(false);
   const [showReview, setShowReview] = useState(false);
   const filtered = query
     ? cookies.filter((c) => {
@@ -38,6 +41,12 @@ export function App() {
         return c.name.toLowerCase().includes(q) || c.domain.toLowerCase().includes(q) || c.value.toLowerCase().includes(q);
       })
     : cookies;
+
+  function openProfiles(): void {
+    setProfilesOpenState(true);
+    void setProfilesOpen();
+    requestAnimationFrame(() => document.getElementById('profiles')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  }
 
   function newDraft(): CookieAttrs {
     let domain = 'example.com';
@@ -49,6 +58,7 @@ export function App() {
     void hydrateFromStorage().catch(() => {}).then(() => cookiesStore.getState().refresh());
     void entitlementStore.getState().refresh();
     void rulesStore.getState().refresh();
+    void getProfilesOpen().then((open) => { if (open) setProfilesOpenState(true); });
     const unsub = onPermissionsChanged(() => void cookiesStore.getState().refresh());
     const onActivated = (): void => void cookiesStore.getState().refresh();
     chrome.tabs.onActivated.addListener(onActivated);
@@ -76,11 +86,12 @@ export function App() {
     };
   }, []);
 
+  // The profiles chunk (IndexedDB, Web Crypto) loads for Pro, or once a free user opens Profiles.
   useEffect(() => {
-    if (entitled && !Pro) {
+    if ((entitled || profilesOpen) && !Pro) {
       void import('../../components/pro/ProfilesPanel').then((m) => setPro(() => m.ProfilesPanel));
     }
-  }, [entitled, Pro]);
+  }, [entitled, profilesOpen, Pro]);
 
   // Re-check the review nudge after each action (the cookie list changes on every refresh).
   useEffect(() => {
@@ -118,7 +129,11 @@ export function App() {
         <label style={{ fontSize: 11, color: 'var(--bokal-muted)' }}>
           <input type="checkbox" checked={showPartitioned} disabled={scope === 'all'} onChange={(e) => cookiesStore.getState().setShowPartitioned(e.target.checked)} /> Show partitioned (CHIPS)
         </label>
-        {!entitled && <UpgradeButton compact />}
+        {!entitled && (
+          <button type="button" onClick={openProfiles} title={`Cookie profiles — ${FREE_PROFILE_LIMIT} free, unlimited with Pro`} style={{ fontSize: 11 }}>
+            ★ Pro
+          </button>
+        )}
         <ThemeToggle />
       </div>
       {scope === 'site' && cookies.length >= SOFT_DOMAIN_COOKIE_WARN && (
@@ -140,7 +155,9 @@ export function App() {
           <ManageBilling />
         </>
       ) : (
-        <div style={{ padding: '8px 12px' }}><UpgradeButton /></div>
+        <ProfilesSection open={profilesOpen} onOpen={openProfiles}>
+          {Pro ? <Pro limit={FREE_PROFILE_LIMIT} /> : <div style={{ fontSize: 12, color: 'var(--bokal-muted)' }}>Loading…</div>}
+        </ProfilesSection>
       )}
       {/* GPL-3.0 obliges us to point recipients of the binary at the corresponding source, and the
           bundle also carries AGPL (ExtPay) and MPL (webextension-polyfill) code whose notices must
