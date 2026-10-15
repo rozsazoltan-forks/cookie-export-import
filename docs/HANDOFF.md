@@ -17,8 +17,10 @@ find in older notes from before that date is INVALID. `git log` is authoritative
 "★ Unlock Pro" button, no explanation, no price, straight to an external checkout. And there is no
 public evidence that anyone wants cookie profiles (0 of 184 issues in Cookie-Editor's tracker).
 
-**MERGED to `main` as `a07268e` (2026-10-14, PR #2, CI green).** Store still on 1.1.0 until the founder
-uploads the zip (sha256 `c708fc62c3c71e75…`, copy on the founder's Desktop).
+**MERGED to `main` as `a07268e` (2026-10-14, PR #2, CI green). SUBMITTED to the Chrome Web Store by the
+founder 2026-10-14** (zip sha256 `c708fc62c3c71e75…`). In review; the live listing stays on 1.1.0 until
+approved. Unconfirmed at submission: whether `DESCRIPTION-paste-v1.2.md` was pasted in the same visit,
+and whether Edge was updated.
 
 **What 1.2.0 changes** (commits `6cd1623` feat, `b74414b` release, `5d48be4` docs, `24e71fa` fixes):
 - Every free user sees a **Cookie profiles** section: what profiles do, worded for test accounts, and
