@@ -112,6 +112,12 @@ const cards = [
     sub: 'Netscape format for curl, wget and yt-dlp — straight out of the browser.',
     chips: ['Netscape format', 'curl --cookie', 'yt-dlp'],
   }],
+  ['og-case-study', {
+    eyebrow: 'Case study',
+    title: 'Building Bokal, a Chrome &amp; Edge extension',
+    sub: 'Manifest V3, narrow permissions, Stripe payments, 178 unit and 7 browser tests — built and shipped solo.',
+    chips: ['Manifest V3', 'React + TypeScript', 'Stripe'],
+  }],
   ['og-playwright', {
     eyebrow: 'How-to',
     title: 'Export cookies as Playwright <span style="color:#E9A83E">storageState</span>.',

@@ -67,6 +67,11 @@ the 300 will take many months without posting — posting is what makes the expe
 same CWS dashboard visit. The **same zip and text go to Edge Partner Center** (Edge is on 1.0.2 and
 can skip 1.1.0). (Already merged to `main`.)
 
+**Already live (2026-10-14):** `site/case-study.html` (+ `og/og-case-study.png`, sitemap entry) — the
+founder's freelance portfolio case study. It was deployed ALONE, file by file, because main's
+`index.html`/`privacy.html` carry 1.2 wording that must wait for approval. Its one 1.2-only claim is
+worded "From version 1.2, one profile is free", so it is true before and after.
+
 **POST-PUBLISH (AGENT, the day 1.2.0 is approved):** deploy `site/` to `gh-pages` (index.html Pro
 tier + "one profile free", privacy.html "cookie profiles" no longer Pro-only — both committed but
 NOT deployed, because they are false of 1.1.0); apply rule 3 in `docs/business/posts/README.md` to
