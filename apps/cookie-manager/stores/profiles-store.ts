@@ -1,13 +1,15 @@
 import { createStore } from 'zustand/vanilla';
 import { useStore } from 'zustand';
 import type { Profile } from '../lib/profiles/types';
-import { putProfile, getAllProfiles, deleteProfileDb } from '../lib/profiles/db';
+import { insertProfile, getAllProfiles, deleteProfileDb } from '../lib/profiles/db';
 import { encryptJson, decryptJson } from '../lib/profiles/crypto';
 import { setCookie, removeCookie } from '../lib/cookies/write';
-import { cookieUrl } from '../lib/cookies/keys';
-import { getCookiesForUrl } from '../lib/cookies/read';
+import { cookieUrl, cookieId } from '../lib/cookies/keys';
+import { getCookiesForUrl, getPartitionedCookiesForUrl } from '../lib/cookies/read';
 import { loadRules, isProtected } from '../lib/rules/rules';
 import { cookiesStore } from './cookies-store';
+import { entitlementStore } from './entitlement-store';
+import { canSaveProfile, FREE_PROFILE_LIMIT } from '../lib/pay/plan';
 import type { CookieAttrs } from '../lib/cookie-types';
 
 interface ProfilesState {
@@ -15,7 +17,8 @@ interface ProfilesState {
   busy: boolean;
   error: string | null;
   load: () => Promise<void>;
-  save: (name: string, passphrase?: string) => Promise<void>;
+  /** Resolves true if the profile was written; false if refused (free limit, no site) or failed. */
+  save: (name: string, passphrase?: string) => Promise<boolean>;
   apply: (id: string, opts?: { passphrase?: string; replace?: boolean }) => Promise<{ applied: number; failed: number; removed: number }>;
   remove: (id: string) => Promise<void>;
 }
@@ -42,22 +45,47 @@ export const profilesStore = createStore<ProfilesState>((set, get) => ({
   },
   save: async (name, passphrase) => {
     set({ busy: true, error: null });
+    const refuse = async (): Promise<false> => {
+      set({ error: `Free includes ${FREE_PROFILE_LIMIT} profile. Unlock Pro to save more and switch between them.` });
+      await get().load(); // the refusal may be due to a profile saved in another panel — show it
+      return false;
+    };
     try {
-      const { cookies, activeUrl } = cookiesStore.getState();
+      const { activeUrl } = cookiesStore.getState();
+      if (!activeUrl) {
+        set({ error: 'Open Bokal on a site to save its cookies.' });
+        return false;
+      }
+      const entitled = entitlementStore.getState().entitled;
+      // Early check, so a free user at the limit hears at once rather than after ~1s of key
+      // derivation. The binding check is insertProfile's, which is atomic across panels.
+      if (!canSaveProfile((await getAllProfiles()).length, entitled)) return await refuse();
+      // Capture what is on the site, not what the list happens to show: partitioned (CHIPS) cookies
+      // are included even when the list hides them, and the All-cookies view never turns a profile
+      // into a copy of the whole browser.
+      const seen = new Set<string>();
+      const cookies = [...(await getCookiesForUrl(activeUrl)), ...(await getPartitionedCookiesForUrl(activeUrl))].filter((c) => {
+        const id = cookieId(c);
+        if (seen.has(id)) return false;
+        seen.add(id);
+        return true;
+      });
       const base: Profile = {
         id: crypto.randomUUID(),
         name,
         createdAt: Date.now(),
-        site: activeUrl ?? undefined,
+        site: activeUrl,
         encrypted: Boolean(passphrase),
       };
       const profile: Profile = passphrase
         ? { ...base, blob: await encryptJson(cookies, passphrase) }
         : { ...base, cookies };
-      await putProfile(profile);
+      if (!(await insertProfile(profile, entitled ? undefined : FREE_PROFILE_LIMIT))) return await refuse();
       await get().load();
+      return true;
     } catch (err) {
       set({ error: err instanceof Error ? err.message : String(err) });
+      return false;
     } finally {
       set({ busy: false });
     }

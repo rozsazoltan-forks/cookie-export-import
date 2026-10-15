@@ -27,7 +27,7 @@ no server at all.
 Local storage: your cookie data lives only on your device and is never
 synced. Your theme preference, cookie rules, and Pro entitlement status are
 stored via chrome.storage.local; the current cookie list is cached temporarily
-via chrome.storage.session so re-opening the panel is instant; if you use Pro
+via chrome.storage.session so re-opening the panel is instant; if you use
 cookie profiles, your saved profiles/snapshots are stored only on your device in
 IndexedDB (not chrome.storage.local), and can be encrypted at rest with a
 passphrase you set. (If you purchase Pro, the ExtensionPay library stores its own
@@ -58,7 +58,7 @@ because free users never contact the billing service at all.
 Permissions: 'cookies' and host access are used solely to manage cookies for
 sites you choose; 'storage' persists your local preferences, entitlement
 status, and cookie snapshot on your device; 'unlimitedStorage' lifts the
-default IndexedDB quota so your Pro cookie-profile library isn't capped;
+default IndexedDB quota so your cookie-profile library isn't capped;
 'sidePanel' renders the optional side-panel UI; 'activeTab' reads the current
 tab's address (only when you open Bokal) so it can request access to just that
 one site — it is not the 'tabs' permission; 'alarms' schedules two periodic

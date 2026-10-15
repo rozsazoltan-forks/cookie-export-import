@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useProfiles, profilesStore } from '../../stores/profiles-store';
 
-export function ProfilesPanel() {
+/** `limit` = the free allowance; omitted for Pro (unlimited). Existing profiles stay usable above it. */
+export function ProfilesPanel({ limit }: { limit?: number } = {}) {
   const profiles = useProfiles((s) => s.profiles);
   const busy = useProfiles((s) => s.busy);
   const error = useProfiles((s) => s.error);
@@ -12,6 +13,7 @@ export function ProfilesPanel() {
   const [applyPass, setApplyPass] = useState('');
   const [applyingId, setApplyingId] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
+  const atLimit = limit !== undefined && profiles.length >= limit;
 
   useEffect(() => {
     void profilesStore.getState().load();
@@ -20,7 +22,8 @@ export function ProfilesPanel() {
   async function onSave() {
     setNotice(null);
     if (!name.trim()) return;
-    await profilesStore.getState().save(name.trim(), encrypt ? pass : undefined);
+    // Keep what was typed if the save is refused, so the user can act on the message and retry.
+    if (!(await profilesStore.getState().save(name.trim(), encrypt ? pass : undefined))) return;
     setName('');
     setPass('');
   }
@@ -37,17 +40,29 @@ export function ProfilesPanel() {
 
   return (
     <div style={{ padding: 12, font: '13px system-ui', borderTop: '1px solid var(--bokal-border)' }}>
-      <div style={{ fontWeight: 600, marginBottom: 6 }}>Cookie profiles (Pro)</div>
+      <div style={{ fontWeight: 600, marginBottom: 6 }}>
+        Cookie profiles
+        {limit !== undefined && (
+          <span style={{ fontWeight: 400, fontSize: 11, color: 'var(--bokal-muted)', marginLeft: 6 }}>
+            {profiles.length <= limit ? `${profiles.length} of ${limit} free` : `${profiles.length} saved · ${limit} free`}
+          </span>
+        )}
+      </div>
       <div style={{ display: 'flex', gap: 6, marginBottom: 6, flexWrap: 'wrap' }}>
         <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Profile name" />
         <label style={{ fontSize: 11, color: 'var(--bokal-muted)' }}>
           <input type="checkbox" checked={encrypt} onChange={(e) => setEncrypt(e.target.checked)} /> Encrypt
         </label>
         {encrypt && <input type="password" value={pass} onChange={(e) => setPass(e.target.value)} placeholder="Passphrase" />}
-        <button type="button" disabled={busy || !name.trim() || (encrypt && !pass)} onClick={() => void onSave()}>
+        <button type="button" disabled={busy || atLimit || !name.trim() || (encrypt && !pass)} onClick={() => void onSave()}>
           Save current cookies
         </button>
       </div>
+      {atLimit && (
+        <div style={{ fontSize: 12, marginBottom: 6 }}>
+          Free includes {limit} profile. Unlock Pro below to save more and switch between them.
+        </div>
+      )}
       {!encrypt && (
         <div style={{ fontSize: 11, color: 'var(--bokal-muted)', marginBottom: 6 }}>
           ⚠ Saved unencrypted — cookie values are readable on this device. Enable Encrypt for auth/session cookies.

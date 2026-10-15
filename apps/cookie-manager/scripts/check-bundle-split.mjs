@@ -2,10 +2,11 @@ import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// Guards the public claim (README, store copy): the Pro UI is code-split into its own lazy chunk,
-// so a free user never fetches or executes Pro logic. Without this, the split is only true by
-// accident — one stray static import of ProfilesPanel would silently bundle the encryption +
-// IndexedDB code into the always-loaded panel bundle and make the claim a lie.
+// Guards the public claim (README, store copy): the profiles code — encryption + IndexedDB — is
+// code-split into its own lazy chunk, loaded only for Pro users or once a free user opens Cookie
+// profiles (1.2.0 gives free users one profile). Without this, the split is only true by accident —
+// one stray static import of ProfilesPanel would silently bundle that code into the always-loaded
+// panel bundle, so every user would load it on every open.
 //
 // Run AFTER a build. Wired into CI right after the build step.
 
@@ -54,7 +55,7 @@ const leaked = PRO_MARKERS.filter((m) => appSrc.includes(m));
 if (leaked.length > 0) {
   fail(
     `the main bundle (${appChunk}) contains Pro-only code: [${leaked.join(', ')}].\n` +
-      '  A free user must never load or execute Pro logic. Remove the static import of ProfilesPanel\n' +
+      '  The profiles code must load only on demand. Remove the static import of ProfilesPanel\n' +
       '  (or of lib/profiles) from the always-loaded path and keep it behind dynamic import().',
   );
 }
