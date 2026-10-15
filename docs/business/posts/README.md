@@ -11,10 +11,9 @@ Cookie-Editor's published `manifest.chrome.json`, on 2026-08-26.
    one version behind"; do not pair "on Edge" with 1.1.0-only features (Netscape import). The per-file
    "Do NOT claim Edge availability" notes predate this and should be read in that light.
 2. **Netscape import shipped in v1.1.0.** Bokal both writes and reads `cookies.txt` (import understands curl's `#HttpOnly_` marker).
-3. **From v1.2.0 (once it is live): one profile is free.** Several posts say "the whole cookie
-   manager is free; the one paid feature is cookie profiles". After 1.2.0 is approved, make that
-   "…plus one cookie profile; Pro removes the limit ($29.99 once)". Until it is approved, the old
-   wording is correct — do not post the new claim early.
+3. **v1.2.0 is LIVE (approved 2026-10-15): one profile is free.** The unposted drafts were updated
+   the same day to say "unlimited cookie profiles (one profile is free)". `01` and `04` were already
+   posted with the 1.1 wording, which was accurate when they went out.
 4. **Open source / MV3 / optional host permissions are NOT differentiators** — Cookie-Editor has all
    three. The real deltas are `tabs` vs `activeTab`, CHIPS, and Playwright/Puppeteer export.
 
@@ -28,6 +27,7 @@ zero GitHub stars and never checked. The record, from HN's Algolia API and a Red
 | Thu 2026-07-16 13:05 ET | Hacker News — [48937187](https://news.ycombinator.com/item?id=48937187), from an account created that day | Bare link to bokal.dev, no "Show HN:", no comment → **1 point, 0 comments** |
 | Thu 2026-07-16 13:17 ET | r/webdev | **Removed by moderator** (project posts are Saturday-only) |
 | Thu 2026-07-16 13:19 ET | r/webdev, same account | Duplicate two minutes later → **removed by moderator** |
+| **Wed 2026-10-14 ~22:40 ET** | **r/chrome_extensions** (`01`, title changed to "…installs with no permission warnings") | Posted by the founder; outcome to check (Reddit is blocked to the agent's browser; the pullpush archive lags) |
 | **Wed 2026-10-14 22:2x ET** | **Show HN — [50098350](https://news.ycombinator.com/item?id=50098350)** | Proper Show HN: prefix, links the GitHub repo, title from `04`. Posted at the founder's request despite the late-night ET slot (recommended Thu 8–10am ET). The first comment is the founder's to write: **HN's guidelines forbid generated or AI-edited text**, so the drafted body in `04` must NOT be pasted as-is — use it only as notes. |
 
 Nothing since. All three failed on mechanics, not on the pitch — none was seen by enough people to

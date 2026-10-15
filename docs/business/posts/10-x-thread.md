@@ -31,7 +31,7 @@ Switching is free — it reads Cookie-Editor / EditThisCookie JSON.
 Free users make zero network calls (check DevTools → Network); your cookie data never leaves your device. Local-first: no server, no account.
 
 **5/**
-One paid feature: Bokal Pro = named local cookie profiles. Snapshot a site's cookies, then restore a saved set into the live session in one click (e.g. test accounts), with optional AES-GCM passphrase encryption. 100% local (IndexedDB).
+One paid feature: Bokal Pro = unlimited named cookie profiles (one profile is free). Snapshot a site's cookies, then restore a saved set into the live session in one click (e.g. test accounts), with optional AES-GCM passphrase encryption. 100% local (IndexedDB).
 
 $4.99/mo · $19.99/yr · $29.99 one-time. Everything else is free.
 

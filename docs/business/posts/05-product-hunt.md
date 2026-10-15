@@ -14,7 +14,7 @@
 - Cookie manager that keeps your cookies on your device (54)
 
 ### Short description
-Bokal is an open-source (GPL-3.0) Manifest V3 cookie manager for Chrome. Full cookie CRUD including HttpOnly, search/filter, protect/pin/block rules, and export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats (import covers all of those, Netscape included) — plus a CHIPS partitioned-cookie inspector and a DevTools panel. No `<all_urls>` at install, no "tabs" permission, no telemetry, no remote code. Free users make zero network calls and your cookie data never leaves your device. Everything's free; the one paid feature (Bokal Pro, $29.99 one-time) adds named local cookie profiles with optional passphrase (AES-GCM) encryption.
+Bokal is an open-source (GPL-3.0) Manifest V3 cookie manager for Chrome. Full cookie CRUD including HttpOnly, search/filter, protect/pin/block rules, and export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats (import covers all of those, Netscape included) — plus a CHIPS partitioned-cookie inspector and a DevTools panel. No `<all_urls>` at install, no "tabs" permission, no telemetry, no remote code. Free users make zero network calls and your cookie data never leaves your device. Everything's free; the one paid feature (Bokal Pro, $29.99 one-time) adds unlimited named cookie profiles (one profile is free) with optional passphrase (AES-GCM) encryption.
 
 ### First maker comment (founder voice)
 
@@ -38,7 +38,7 @@ Bokal is an open-source (GPL-3.0) Manifest V3 cookie manager for Chrome. Full co
 > - Reads Cookie-Editor / EditThisCookie JSON — switching costs nothing
 >
 > **The only paid feature — Bokal Pro:**
-> - Named local cookie profiles: snapshot a site's cookies and restore a saved set into the live session in one click (e.g. test accounts), with optional AES-GCM passphrase encryption. 100% local (IndexedDB).
+> - Unlimited named cookie profiles (one profile is free): snapshot a site's cookies and restore a saved set into the live session in one click (e.g. test accounts), with optional AES-GCM passphrase encryption. 100% local (IndexedDB).
 > - $4.99/mo · $19.99/yr · $29.99 one-time. Pro is GPL too — I'm not relying on license lock-in; the honest reason to pay is to fund the work.
 >
 > Live on the Chrome Web Store today.

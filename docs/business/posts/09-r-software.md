@@ -51,6 +51,6 @@ No `tabs` permission, which is what makes Chrome show *"Read your browsing histo
 - Source (GPL-3.0): https://github.com/yuvibabbar-dev/bokal
 - Site: https://bokal.dev
 
-**The optional paid part,** disclosed rather than pitched: one feature, named local cookie profiles — snapshot a site's cookies and restore a saved set into the live session in one click, useful for juggling test accounts. Stored locally with optional AES-GCM passphrase encryption. It's GPL as well, so the licence check is forkable; it exists to fund maintenance, not to gate the tool. Nothing above depends on it.
+**The optional paid part,** disclosed rather than pitched: one feature, unlimited named cookie profiles (one profile is free) — snapshot a site's cookies and restore a saved set into the live session in one click, useful for juggling test accounts. Stored locally with optional AES-GCM passphrase encryption. It's GPL as well, so the licence check is forkable; it exists to fund maintenance, not to gate the tool. Nothing above depends on it.
 
 Happy to answer anything about the permission model or the MV3 migration.

@@ -12,7 +12,7 @@ Bokal is an open-source (GPL-3.0), Manifest V3 cookie manager for Chrome — an 
 
 Features: full cookie CRUD including HttpOnly cookies, search/filter, protect/pin/block rules, whitelist cleanup, a CHIPS partitioned-cookie inspector, a DevTools panel, and dark mode. Export supports JSON, Netscape, cookie-header, Playwright `storageState`/`addCookies`, and Puppeteer `setCookie`; import covers all of those — Netscape included — and it reads Cookie-Editor and EditThisCookie JSON directly.
 
-Freemium: everything above is free. The only paid feature, Bokal Pro, adds named local cookie profiles (snapshot and restore saved cookie sets into the live session) with optional AES-GCM passphrase encryption, stored 100% locally. $4.99/mo, $19.99/yr, or $29.99 one-time.
+Freemium: everything above is free. The only paid feature, Bokal Pro, adds unlimited named cookie profiles (one profile is free) (snapshot and restore saved cookie sets into the live session) with optional AES-GCM passphrase encryption, stored 100% locally. $4.99/mo, $19.99/yr, or $29.99 one-time.
 
 **Tags/fields:** Free (freemium) · Open Source · GPL-3.0 · Chrome extension
 **Alternative to:** EditThisCookie, Cookie-Editor

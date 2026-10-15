@@ -48,6 +48,6 @@ No `tabs` permission, so no *"Read your browsing history"* on the install screen
 
 **Stack,** for anyone curious: TypeScript, React, WXT, zustand, vitest, Playwright. GPL-3.0-or-later — which is forced rather than chosen: it bundles ExtPay, which is AGPL, so a permissive license wouldn't be compliant. The reasoning is written up in `docs/licensing-notes.md` in case it's useful to anyone else navigating that.
 
-**Sustainability, one line as promised:** the cookie manager is complete and free forever; there's an optional paid tier for named local cookie profiles that funds the work, and it's GPL too, so you could fork the check out — I'm not relying on license lock-in.
+**Sustainability, one line as promised:** the cookie manager is complete and free forever; there's an optional paid tier for unlimited named cookie profiles (one profile is free) that funds the work, and it's GPL too, so you could fork the check out — I'm not relying on license lock-in.
 
 Happy to talk about the MV3 migration, the `activeTab` → per-site permission flow, or the licensing analysis. Criticism of the trust claims is the most useful thing you could give me.

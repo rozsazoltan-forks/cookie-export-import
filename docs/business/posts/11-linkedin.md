@@ -17,7 +17,7 @@ How it's built:
 
 What it does: full cookie CRUD including HttpOnly cookies (which UI-only tools can't edit), search/filter, protect/pin/block rules, whitelist cleanup, a CHIPS partitioned-cookie inspector, a DevTools panel, and export across JSON, Netscape, cookie-header, and Playwright/Puppeteer formats (import covers all of them, Netscape included). It also reads Cookie-Editor and EditThisCookie JSON, so switching costs nothing.
 
-Everything above is free. The only paid tier, Bokal Pro, adds named local cookie profiles — snapshot a site's cookies and restore a saved set into the live session in one click (like different test accounts), with optional AES-GCM passphrase encryption, stored locally in IndexedDB. It's $4.99/mo, $19.99/yr, or $29.99 one-time.
+Everything above is free. The only paid tier, Bokal Pro, adds unlimited named cookie profiles (one profile is free) — snapshot a site's cookies and restore a saved set into the live session in one click (like different test accounts), with optional AES-GCM passphrase encryption, stored locally in IndexedDB. It's $4.99/mo, $19.99/yr, or $29.99 one-time.
 
 Live on Chrome now.
 

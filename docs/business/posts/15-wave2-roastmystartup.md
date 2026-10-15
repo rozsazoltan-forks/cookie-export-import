@@ -18,7 +18,7 @@ Roast away, specifically on the money.
 
 **What it is:** Bokal, a cookie manager for Chrome. The whole cookie manager is free and open source (GPL-3.0) — full CRUD including HttpOnly, search, rules, cleanup, CHIPS partition inspector, DevTools panel, export to JSON/Netscape/Playwright/Puppeteer.
 
-**What's paid:** exactly one feature. Named local cookie profiles — snapshot a site's cookies, switch between saved sets in one click. $4.99/mo, $19.99/yr, or $29.99 one-time.
+**What's paid:** exactly one feature, unlimited cookie profiles. One profile is free; the second needs Pro. A profile lets you snapshot a site's cookies, switch between saved sets in one click. $4.99/mo, $19.99/yr, or $29.99 one-time.
 
 **The numbers, unvarnished:** live on the Chrome Web Store since July 15. **106 users. Zero revenue. Zero GitHub stars.** Every install came from store search. My entire promotion was three posts on launch day — two removed by r/webdev mods (wrong day of the week), one Hacker News link that got a single point — and then nothing for eleven weeks, which is its own separate roast I'm already administering to myself.
 

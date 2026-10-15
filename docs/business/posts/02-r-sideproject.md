@@ -29,7 +29,7 @@ No `tabs` permission. No host permissions at install. `<all_urls>` exists only a
 - **The activeTab → per-site permission dance.** Getting host access for exactly one origin, triggered by a toolbar click, without the `tabs` permission and without an install-time warning, took far longer to get right than the entire cookie CRUD layer.
 - **MV3 service workers dying mid-operation.** Everything stateful had to survive being killed at an arbitrary moment.
 - **CHIPS / partitioned cookies.** The partition key changes what "the same cookie" even means, and most tools quietly ignore it.
-- **Restoring a cookie set *into a live session in place*** — across HttpOnly and partitioned cookies — rather than the export-a-file-then-reimport-it thing. That's the one paid feature, and it was by far the fiddliest code in the project.
+- **Restoring a cookie set *into a live session in place*** — across HttpOnly and partitioned cookies — rather than the export-a-file-then-reimport-it thing. Saving more than one profile is the paid feature, and it was by far the fiddliest code in the project.
 - **Not lying in the copy.** I have a test that asserts a free user makes zero network calls, and another that asserts cookie values are never logged. Writing marketing that stays literally true against the code turned out to be a real engineering constraint, and a good one. (Case in point: I caught myself claiming "Netscape import" in a draft of this very post back when 1.0.2 was live — Bokal exported Netscape but did not import it. I cut the claim rather than fudge it, and then shipped the feature in 1.1.0.)
 
 **Now the embarrassing part.** It went live on the Chrome Web Store on July 15. On July 16 I "launched" it, and the whole launch took fourteen minutes.
@@ -50,4 +50,4 @@ Current numbers, honestly: **106 users, 5.0★ from 2 ratings, $0 revenue.** Eve
 - Source (GPL-3.0): https://github.com/yuvibabbar-dev/bokal
 - Site: https://bokal.dev
 
-Free tier is the whole cookie manager — CRUD including HttpOnly, search, rules, cleanup, CHIPS inspector, DevTools panel, export to JSON/Netscape/cookie-header/Playwright/Puppeteer. One paid feature (named local cookie profiles, $29.99 one-time or $4.99/mo) which I'm mentioning once, here, and not again.
+Free tier is the whole cookie manager — CRUD including HttpOnly, search, rules, cleanup, CHIPS inspector, DevTools panel, export to JSON/Netscape/cookie-header/Playwright/Puppeteer. One paid feature: unlimited cookie profiles (one profile is free; more is $29.99 one-time or $4.99/mo), which I'm mentioning once, here, and not again.

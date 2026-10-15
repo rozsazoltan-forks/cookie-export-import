@@ -22,7 +22,7 @@ The other half that's relevant to automation: it exports cookies to **Playwright
 
 Everything else is free: full cookie CRUD including HttpOnly cookies (which UI-only tools can't edit), search/filter, protect/pin/block rules, a CHIPS partitioned-cookie inspector, a DevTools panel. It also reads Cookie-Editor / EditThisCookie JSON if you're coming from those.
 
-**Honest paywall disclosure:** the named cookie profiles are the only paid feature ("Bokal Pro") — $4.99/mo, $19.99/yr, or $29.99 one-time. Everything else is free, and free users make zero network calls (verify in DevTools → Network); your cookie data never leaves your device on any tier. It's open source (GPL-3.0), no telemetry, and it requests access only to the site you're on when you open it — no install-time host permissions.
+**Honest paywall disclosure:** unlimited named cookie profiles are the only paid feature (one profile is free) ("Bokal Pro") — $4.99/mo, $19.99/yr, or $29.99 one-time. Everything else is free, and free users make zero network calls (verify in DevTools → Network); your cookie data never leaves your device on any tier. It's open source (GPL-3.0), no telemetry, and it requests access only to the site you're on when you open it — no install-time host permissions.
 
 Chrome Web Store: https://chromewebstore.google.com/detail/bokal-cookie-editor-manag/oidemgbbhocfepdadkmfdlbjgdcjdldd
 Source: https://github.com/yuvibabbar-dev/bokal

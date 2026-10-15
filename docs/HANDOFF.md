@@ -10,7 +10,22 @@ find in older notes from before that date is INVALID. `git log` is authoritative
 
 ## 0. ⚠ STATE AS OF 2026-10-14 — READ THIS FIRST
 
+### ✅ v1.2.0 APPROVED and LIVE on the Chrome Web Store — 2026-10-15
+
+- **300-install clock starts here: 113 users on 2026-10-15.** The CWS figure is *active users*, not
+  installs, so churn makes it undercount; treat **~413 users with still no sale** as the point the
+  decision rule fires (make Bokal free, remove ExtPay). Check sales in the ExtPay dashboard.
+- Site: `index.html` + `privacy.html` 1.2 wording deployed to gh-pages (`195fd6b`), verified live.
+- Unposted drafts updated to "unlimited cookie profiles (one profile is free)".
+- **Still open (FOUNDER):** the store DESCRIPTION is still the 1.1 text — paste
+  `docs/store/DESCRIPTION-paste-v1.2.md` (dashboard-only, no re-upload). **Edge still on 1.0.2** —
+  upload the 1.2.0 zip + same description in Partner Center.
+
 ### Show HN posted 2026-10-14 ~22:20 ET — https://news.ycombinator.com/item?id=50098350
+
+**Result (2026-10-15 ~13:00 ET, 14.6 h): 1 point, 0 comments, off every list — it sank.** No maker
+comment was ever added. Do not repost; at most one polite email to hn@ycombinator.com asking about
+the second-chance pool. r/chrome_extensions was posted by the founder the same night.
 
 Posted by the founder's request (agent filled the form in their Chrome; founder confirmed "submit it
 now"). Late-night ET slot, against the recommendation of Thu 8–10am ET. Links the GitHub repo. The
