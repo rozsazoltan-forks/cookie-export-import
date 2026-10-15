@@ -17,7 +17,10 @@ find in older notes from before that date is INVALID. `git log` is authoritative
 "★ Unlock Pro" button, no explanation, no price, straight to an external checkout. And there is no
 public evidence that anyone wants cookie profiles (0 of 184 issues in Cookie-Editor's tracker).
 
-**What 1.2.0 changes** (branch `release/v1.2.0`, commits `6cd1623` feat, `b74414b` release):
+**MERGED to `main` as `a07268e` (2026-10-14, PR #2, CI green).** Store still on 1.1.0 until the founder
+uploads the zip (sha256 `c708fc62c3c71e75…`, copy on the founder's Desktop).
+
+**What 1.2.0 changes** (commits `6cd1623` feat, `b74414b` release, `5d48be4` docs, `24e71fa` fixes):
 - Every free user sees a **Cookie profiles** section: what profiles do, worded for test accounts, and
   the price before any click (`lib/pay/plan.ts` — must match the live ExtPay plans).
 - **One profile is free, encryption included.** The second is the upgrade moment. Enforced in
@@ -60,7 +63,7 @@ the 300 will take many months without posting — posting is what makes the expe
 
 **To ship (FOUNDER):** upload the 1.2.0 zip + paste `docs/store/DESCRIPTION-paste-v1.2.md` in the
 same CWS dashboard visit. The **same zip and text go to Edge Partner Center** (Edge is on 1.0.2 and
-can skip 1.1.0). Merge `release/v1.2.0` to `main` when uploading.
+can skip 1.1.0). (Already merged to `main`.)
 
 **POST-PUBLISH (AGENT, the day 1.2.0 is approved):** deploy `site/` to `gh-pages` (index.html Pro
 tier + "one profile free", privacy.html "cookie profiles" no longer Pro-only — both committed but
