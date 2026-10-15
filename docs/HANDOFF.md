@@ -10,6 +10,14 @@ find in older notes from before that date is INVALID. `git log` is authoritative
 
 ## 0. ⚠ STATE AS OF 2026-10-14 — READ THIS FIRST
 
+### Show HN posted 2026-10-14 ~22:20 ET — https://news.ycombinator.com/item?id=50098350
+
+Posted by the founder's request (agent filled the form in their Chrome; founder confirmed "submit it
+now"). Late-night ET slot, against the recommendation of Thu 8–10am ET. Links the GitHub repo. The
+maker comment must be written by the founder: HN's guidelines forbid generated/AI-edited text, so the
+`posts/04` body is notes only. Check its points/comments, and the CWS install count the next day, to
+see whether it moved anything.
+
 ### v1.2.0 — the paywall experiment (built 2026-10-14, founder approved)
 
 **Why.** 113 users and still $0. Growth fell from ~2 installs/day to ~0.5/day (106 on 10-01 → 113 on

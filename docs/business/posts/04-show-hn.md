@@ -8,7 +8,9 @@
 > 3. **Paste the first comment within a minute of submitting.**
 > 4. Same account is fine. If a commenter mentions the July post, say so plainly: first attempt, no comment, sank.
 
-> Paste-ready. Verified against source 2026-08-23. Do NOT claim Edge availability.
+> **POSTED 2026-10-14 ~22:20 ET: https://news.ycombinator.com/item?id=50098350** (title below, repo URL, no text).
+>
+> **⚠ Do NOT paste the body below as the first comment.** HN's guidelines: "Don't post generated text or AI-edited text. HN is for conversation between humans." The body is drafting notes; the founder writes the comment in their own words. (Also stale on details: Edge IS live, and "Pro UI never loads unless entitled" changes with 1.2.)
 
 ---
 

@@ -28,6 +28,7 @@ zero GitHub stars and never checked. The record, from HN's Algolia API and a Red
 | Thu 2026-07-16 13:05 ET | Hacker News — [48937187](https://news.ycombinator.com/item?id=48937187), from an account created that day | Bare link to bokal.dev, no "Show HN:", no comment → **1 point, 0 comments** |
 | Thu 2026-07-16 13:17 ET | r/webdev | **Removed by moderator** (project posts are Saturday-only) |
 | Thu 2026-07-16 13:19 ET | r/webdev, same account | Duplicate two minutes later → **removed by moderator** |
+| **Wed 2026-10-14 22:2x ET** | **Show HN — [50098350](https://news.ycombinator.com/item?id=50098350)** | Proper Show HN: prefix, links the GitHub repo, title from `04`. Posted at the founder's request despite the late-night ET slot (recommended Thu 8–10am ET). The first comment is the founder's to write: **HN's guidelines forbid generated or AI-edited text**, so the drafted body in `04` must NOT be pasted as-is — use it only as notes. |
 
 Nothing since. All three failed on mechanics, not on the pitch — none was seen by enough people to
 count as feedback. Files 03 and 04 carry the specific do-it-differently notes.
