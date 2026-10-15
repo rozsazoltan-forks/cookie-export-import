@@ -1,14 +1,62 @@
 # Bokal — Session Handoff / Resume Point
 
-**The single self-contained entry point for the next session.** Last updated: **2026-10-01 — see
-§0 first: 106 users, $0; v1.1.0 LIVE since 09-07; the "launch never fired" narrative was WRONG (three
-dead posts on 2026-07-16); store-search ranks and market sizes measured.** (Body sections below still read as of 2026-07-15 unless
+**The single self-contained entry point for the next session.** Last updated: **2026-10-14 — see
+§0 first: 113 users, $0; v1.2.0 (one free profile, priced paywall) built and verified on branch
+`release/v1.2.0`, awaiting upload; the founder approved the experiment and its stopping rule.** (Body sections below still read as of 2026-07-15 unless
 §0 supersedes them.) (Note: git history was rewritten on 2026-07-14 — any commit SHA you remember or
 find in older notes from before that date is INVALID. `git log` is authoritative.)
 
 ---
 
-## 0. ⚠ STATE AS OF 2026-10-01 — READ THIS FIRST
+## 0. ⚠ STATE AS OF 2026-10-14 — READ THIS FIRST
+
+### v1.2.0 — the paywall experiment (built 2026-10-14, founder approved)
+
+**Why.** 113 users and still $0. Growth fell from ~2 installs/day to ~0.5/day (106 on 10-01 → 113 on
+10-14). Nothing has been posted since 2026-07-16. A free user could not learn what Pro was: a blind
+"★ Unlock Pro" button, no explanation, no price, straight to an external checkout. And there is no
+public evidence that anyone wants cookie profiles (0 of 184 issues in Cookie-Editor's tracker).
+
+**What 1.2.0 changes** (branch `release/v1.2.0`, commits `6cd1623` feat, `b74414b` release):
+- Every free user sees a **Cookie profiles** section: what profiles do, worded for test accounts, and
+  the price before any click (`lib/pay/plan.ts` — must match the live ExtPay plans).
+- **One profile is free, encryption included.** The second is the upgrade moment. Enforced in
+  `profilesStore.save()` against what is stored in IndexedDB, not the in-memory list.
+- A lapsed Pro user keeps all profiles (apply/delete work); only new saves are gated.
+- Header chip "★ Pro" opens the section instead of jumping to checkout. Opened state persists
+  (`bokal:profilesOpen` in storage.local).
+- Store SUMMARY now includes "cookie profiles" (127/132).
+- The profiles chunk still loads lazily: for Pro users, or once a free user opens Profiles. Free users
+  still make zero network calls — asserted by a new E2E.
+
+**Verified 2026-10-14:** tsc clean · 33 files / 168 unit tests · build + `check:bundle` · zip
+(`apps/cookie-manager/.output/bokalcookie-manager-1.2.0-chrome.zip`, 114.5 kB): v1.2.0, no
+`host_permissions`, no `tabs`, licences inside · E2E store build 2 passed / 5 skipped · E2E test
+build **6 passed** incl. the free-tier spec (save, limit, restore, reopen, no extensionpay.com
+request, no engagement flag).
+
+**THE DECISION RULE (agreed with the founder before shipping):** if the **next 300 installs after
+1.2.0 goes live** produce **no sale**, cookie profiles are not worth charging for (0 of 300 rejects a
+1% conversion at 95%). Then: make Bokal fully free, remove ExtPay (which also drops the email/PII
+disclosure and makes "zero network calls" unconditional), and stop spending time on monetization.
+Record the CWS user count on the day 1.2.0 is approved; the clock starts there. At ~0.5 installs/day
+the 300 will take many months without posting — posting is what makes the experiment finish.
+
+**To ship (FOUNDER):** upload the 1.2.0 zip + paste `docs/store/DESCRIPTION-paste-v1.2.md` in the
+same CWS dashboard visit. The **same zip and text go to Edge Partner Center** (Edge is on 1.0.2 and
+can skip 1.1.0). Merge `release/v1.2.0` to `main` when uploading.
+
+**POST-PUBLISH (AGENT, the day 1.2.0 is approved):** deploy `site/` to `gh-pages` (index.html Pro
+tier + "one profile free", privacy.html "cookie profiles" no longer Pro-only — both committed but
+NOT deployed, because they are false of 1.1.0); apply rule 3 in `docs/business/posts/README.md` to
+the posts; record the starting install count for the decision rule.
+
+**Parked branch `wip/netscape-httponly-export`** (pushed): the September `#HttpOnly_` export work,
+moved off `main` on 10-14 so it cannot ride into a release. Still needs the wget decision.
+
+---
+
+### 2026-10-01 block (history) — measured state
 
 ### 2026-10-01 — measured state. Supersedes every "never posted" statement further down.
 
@@ -126,6 +174,7 @@ charging for** (0 of 300 rejects a 1% conversion at 95%) — then make Bokal ful
 (which also removes the PII disclosure and makes "zero network calls" unconditional), and stop
 spending time on monetization.
 
+**[2026-10-14: moved to branch `wip/netscape-httponly-export`; the tree is clean.]**
 **⚠ PARKED, UNCOMMITTED EXTENSION WORK IN THE TREE (since 2026-09-07 21:21–21:32):**
 `lib/io/export.ts` + `netscape.ts` + three test files — `toNetscape` emits `#HttpOnly_`. `lib/io`
 suite passes (49). Deliberately not committed: the note under POST-PUBLISH CHECKLIST below records

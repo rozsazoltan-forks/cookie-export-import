@@ -3,7 +3,7 @@
 Every piece is paste-ready and was verified against the shipped v1.0.2 source, and against
 Cookie-Editor's published `manifest.chrome.json`, on 2026-08-26.
 
-**Three rules that apply to all of them:**
+**Rules that apply to all of them:**
 1. **Edge: live, but one release behind (corrected 2026-10-01).** Bokal IS in the Edge Add-ons store
    (https://microsoftedge.microsoft.com/addons/detail/bokal-cookie-editor-m/hoopoalcgejkjdpmgjlblilojhdfchhj) at **v1.0.2** with the original July description. Earlier notes saying it was "not in the
    Edge store" were never properly verified — the store is JavaScript-rendered and the checks used a
@@ -11,7 +11,11 @@ Cookie-Editor's published `manifest.chrome.json`, on 2026-08-26.
    one version behind"; do not pair "on Edge" with 1.1.0-only features (Netscape import). The per-file
    "Do NOT claim Edge availability" notes predate this and should be read in that light.
 2. **Netscape import shipped in v1.1.0.** Bokal both writes and reads `cookies.txt` (import understands curl's `#HttpOnly_` marker).
-3. **Open source / MV3 / optional host permissions are NOT differentiators** — Cookie-Editor has all
+3. **From v1.2.0 (once it is live): one profile is free.** Several posts say "the whole cookie
+   manager is free; the one paid feature is cookie profiles". After 1.2.0 is approved, make that
+   "…plus one cookie profile; Pro removes the limit ($29.99 once)". Until it is approved, the old
+   wording is correct — do not post the new claim early.
+4. **Open source / MV3 / optional host permissions are NOT differentiators** — Cookie-Editor has all
    three. The real deltas are `tabs` vs `activeTab`, CHIPS, and Playwright/Puppeteer export.
 
 ## What has actually been posted (corrected 2026-10-01)

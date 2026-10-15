@@ -1,5 +1,11 @@
 # Bokal — Store Listing Copy
 
+> **v1.2.0 (2026-10-14):** the description to paste with the 1.2.0 zip is
+> `DESCRIPTION-paste-v1.2.md` (one profile free). The 1.2.0 SUMMARY, set in the manifest, is
+> "View, edit & delete cookies incl. HttpOnly. JSON/Netscape import & export, Playwright/Puppeteer
+> export, CHIPS, cookie profiles." (127/132) — it adds "cookie profiles", a search Bokal was absent
+> from. The description section below is the 1.1.0 text, kept for history.
+>
 > Source: `docs/business/2026-07-13-business-recommendations.md` §4. Paste-ready for the
 > Chrome Web Store and Microsoft Edge Add-ons listing forms.
 >

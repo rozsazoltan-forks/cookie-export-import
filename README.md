@@ -59,21 +59,24 @@ and login states, and privacy-conscious users who want to see and control what s
 - **DevTools panel** — inspect and edit the current tab's cookies inside DevTools.
 - **Dark mode** and virtualized lists that stay fast across thousands of cookies.
 
-## Bokal Pro (optional, paid)
+## Cookie profiles — one free, unlimited with Pro
 
-Pro adds **named local cookie profiles** — snapshot a site's cookies and switch between saved sets
-(e.g. different test accounts) in one click — with **optional passphrase encryption** (AES-GCM +
-PBKDF2, 600k iterations). Profiles live only on your device in IndexedDB.
+Save a site's cookies under a name and switch between saved sets (e.g. different test accounts) in
+one click — restoring HttpOnly and partitioned cookies in place — with **optional passphrase
+encryption** (AES-GCM + PBKDF2, 600k iterations). Profiles live only on your device in IndexedDB.
 
-Pro is deliberately minimal on privacy impact:
+**One profile is free, encryption included.** Bokal Pro removes the limit: **$29.99 once**, $19.99 a
+year, or $4.99 a month. If Pro lapses you keep every saved profile and can still apply or delete it;
+only new saves are limited.
 
-- The **Pro UI is code-split into a separate lazy chunk** — it loads via dynamic `import()` only
-  when you're entitled, and the main bundle contains no Pro logic, so a free user never fetches or
-  runs it. (The chunk ships inside the package like any code-split app; it's simply never loaded
-  unless you buy Pro.)
-- **Free users make zero network calls.** Billing (via [ExtPay](https://extensionpay.com) → Stripe)
-  is only ever contacted after you open the upgrade page. See
-  [`docs/pro-monetization.md`](docs/pro-monetization.md).
+Privacy impact is deliberately minimal:
+
+- The **profiles code is code-split into a separate lazy chunk** — it loads via dynamic `import()`
+  only for Pro users or once you open Cookie profiles, and the always-loaded bundle contains none of
+  it. CI enforces this (`check:bundle`).
+- **Free users make zero network calls**, including when they use their free profile. Billing (via
+  [ExtPay](https://extensionpay.com) → Stripe) is only ever contacted after you click Unlock Pro or
+  Restore purchase. See [`docs/pro-monetization.md`](docs/pro-monetization.md).
 
 ## How Bokal compares
 
